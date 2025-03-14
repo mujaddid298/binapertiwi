@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hubungan_banks', function (Blueprint $table) {
+        Schema::create('reputasis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kapasitas_perusahaan_id')->constrained()->onDelete('cascade');
-            $table->string('nama_lembaga');
-            $table->text('deskripsi');
+            $table->string('sumber_informasi');
+            $table->string('hubungan');
+            $table->string('hasil_pengecekan');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hubungan_banks');
+        Schema::dropIfExists('reputasis');
     }
 };

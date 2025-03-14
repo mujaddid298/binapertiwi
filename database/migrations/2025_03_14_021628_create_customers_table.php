@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('bidang_usaha');
             $table->string('group_perusahaan');
             $table->string('penanggung_jawab');
+
+            $table->foreignId('kapital_perusahaan_id')->nullable()->constrained('kapital_perusahaans')->onDelete('set null');
+            $table->foreignId('kapasitas_perusahaan_id')->nullable()->constrained('kapasitas_perusahaans')->onDelete('set null');
             $table->timestamps();
         });
     }

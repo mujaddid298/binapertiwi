@@ -17,5 +17,3 @@ Route::middleware([CheckRole::class.':admin'])->group(function () {
     Route::get('/home', [UserController::class, 'home'])->name('home');
     Route::get('/admin', [UserController::class, 'admin']);
 });
-
-// You can add more routes that require the 'admin' role here
