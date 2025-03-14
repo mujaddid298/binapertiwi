@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('karakter_perusahaan', function (Blueprint $table) {
+        Schema::create('karakters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('nak_id')->constrained('naks')->onDelete('cascade');
             $table->string('bentuk_perusahaan');
             $table->date('waktu_didirikan');
             $table->string('akte_perubahan');
@@ -27,7 +26,6 @@ return new class extends Migration
             $table->text('struktur_organisasi');
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('karakter_perusahaan');
+        Schema::dropIfExists('karakters');
     }
 };

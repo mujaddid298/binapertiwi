@@ -19,11 +19,9 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, $role): Response
     {
-        // Periksa apakah pengguna terautentikasi
         if (!Auth::check()) {
             return redirect('/login'); // Ganti dengan rute login Anda
         }
-
         // Periksa apakah pengguna memiliki peran yang sesuai
         if (Auth::user()->role !== $role) {
             return redirect('/'); // Ganti dengan rute yang sesuai jika akses ditolak

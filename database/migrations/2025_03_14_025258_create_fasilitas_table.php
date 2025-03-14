@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nilai_kredit', function (Blueprint $table) {
+        Schema::create('fasilitas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('nak_id')->constrained('naks')->onDelete('cascade');
-            $table->decimal('nilai_kreditt', 15, 2);
-            $table->string('term_of_payment');
-            $table->decimal('bunga', 5, 2);
-            $table->text('jaminan');
+            $table->string('fasilitas');
+            $table->string('jumlah');
+            $table->text('keterangan');
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nilai_kredit');
+        Schema::dropIfExists('fasilitas');
     }
 };
