@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('pengajuan_kredit', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_nak')->constrained('naks')->onDelete('cascade');
             $table->decimal('jumlah_kredit', 15, 2);
             $table->string('syarat_pembayaran');
             $table->decimal('persen_bunga', 5, 2);

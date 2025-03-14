@@ -21,10 +21,15 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
         ]);
-        $Middleware = [
-            // Middleware lainnya...
-            CheckRole::class, // Daftarkan middleware di sini
-        ];
+        $middleware->group('api', [
+            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            // 'throttle:api',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ]);
+
+        $middleware->alias([
+            'checklevel' => CheckRole::class,
+        ]);
     })
         ->withExceptions(function (Exceptions $exceptions) {
         //

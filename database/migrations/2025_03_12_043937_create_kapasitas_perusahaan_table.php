@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::create('kapasitas_perusahaan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('nak_id')->constrained('naks')->onDelete('cascade');
-            $table->string('hubungan_lembaga');
-            $table->string('no');
-            $table->string('nama_lembaga');
-            $table->text('deskripsi');
+            $table->unsignedBigInteger('hubungan_bank_id');
+
             $table->string('hasil_pengecekan_reputasi');
             $table->string('sumber_informasi');
             $table->string('hubungan');
@@ -35,6 +32,10 @@ return new class extends Migration
             $table->string('lokasi');
             $table->text('perhitungan_kebutuhan');
             $table->timestamps();
+
+
+            $table->foreign('hubungan_bank_id')->references('id')->on('hubungan_banks')->onDelete('cascade');
+
         });
         
     }

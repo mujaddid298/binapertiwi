@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perusahaan_pelanggan', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('nak_id')->constrained('naks')->onDelete('cascade');
+        Schema::create('customers', function (Blueprint $table) {
+            $table->id(); 
             $table->string('nama');
             $table->string('alamat');
             $table->string('industry');
@@ -22,7 +21,6 @@ return new class extends Migration
             $table->string('penanggung_jawab');
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perusahaan_pelanggan');
+        Schema::dropIfExists('customers');
     }
 };

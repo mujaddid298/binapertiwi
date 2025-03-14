@@ -12,17 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kapital_perusahaan', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('nak_id')->constrained('naks')->onDelete('cascade');
-            $table->decimal('ratarata_penjualan_perbulan', 15, 2);
-            $table->decimal('hasil_penjualan_pertahun', 15, 2);
+            $table->id(); 
+            $table->unsignedBigInteger('fasilitas_id');
+            $table->string('penjualan_perbulan');
+            $table->string('penjualan_pertahun');
             $table->text('keterangan');
-            $table->string('cara_pembayaran');
-            $table->string('model_transaksi');
-            $table->text('fasilitas');
+            $table->string('pembayaran');
+            $table->string('transaksi');
             $table->timestamps();
+
+            $table->foreign('fasilitas_id')->references('id')->on('fasilitas')->onDelete('cascade');
+
         });
-        
     }
 
     /**
