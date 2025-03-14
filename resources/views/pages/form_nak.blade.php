@@ -13,7 +13,7 @@
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    {{-- <li class="breadcrumb-item" aria-current="page">Dashboard</li> --}}
+                    <li class="breadcrumb-item" aria-current="page">Form NAK</li>
                 </ul>
             </div>
         </div>
@@ -26,11 +26,11 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header bg-warning">
-                <h5 class="text-dark">NOTA APLIKASI KREDIT PKP2</h5>
+            <div class="card-header">
+                <h5 class="row align-items-center">NOTA APLIKASI KREDIT PKP2</h5>
             </div>
             <div class="card-body">
-                <form action="{{  }}" method="POST">
+                <form action="#" method="POST">
                     @csrf
 
                     <!-- Top Section -->
@@ -49,15 +49,15 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="kode_ao">KODE AO</label>
-                                <input type="text" class="form-control" id="kode_ao" name="kode_ao">
+                                <label for="nama_bc">NAMA BC</label>
+                                <input type="text" class="form-control" id="nama_bc" name="nama_bc">
                             </div>
                         </div>
                     </div>
 
                     <!-- Personal Information Section -->
                     <div class="row mb-3">
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="nama">NAMA</label>
                                 <input type="text" class="form-control" id="nama" name="nama">
@@ -65,84 +65,86 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="telepon">NOMOR TELEPON</label>
+                                <label for="telepon">BIDANG USAHA</label>
                                 <input type="text" class="form-control" id="telepon" name="telepon">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="nama">GROUP PERUSAHAAN</label>
+                                <input type="text" class="form-control" id="nama" name="nama">
                             </div>
                         </div>
                     </div>
 
                     <!-- Pemohon Section -->
-                    <div class="row mb-3">
-                        <div class="col-md-4">
+                    <div class="row mb-6">
+                        <div class="col-md-7">
                             <div class="form-group">
-                                <label for="pemohon">PEMOHON</label>
+                                <label for="pemohon">ALAMAT</label>
                                 <input type="text" class="form-control" id="pemohon" name="pemohon">
                             </div>
                         </div>
-                        <div class="col-md-4">
+
+                        <div class="col-md-5">
                             <div class="form-group">
-                                <label for="alamat">ALAMAT</label>
+                                <label for="alamat">PENANGGUNG JAWAB</label>
                                 <input type="text" class="form-control" id="alamat" name="alamat">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="jenis_perusahaan">JENIS PERUSAHAAN</label>
-                                <input type="text" class="form-control" id="jenis_perusahaan" name="jenis_perusahaan">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tujuan Section -->
+
+                    <!-- INDUSTRY Section -->
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <label>TUJUAN</label>
+                            <label>INDUSTRY</label>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="ob" name="tujuan[]"
+                                        <input class="form-check-input" type="checkbox" id="ob" name="industry[]"
                                             value="OB">
-                                        <label class="form-check-label" for="ob">OB</label>
+                                        <label class="form-check-label" for="ob">Oil & Gas</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="kpr" name="tujuan[]"
+                                        <input class="form-check-input" type="checkbox" id="Mining" name="industry[]"
                                             value="KPR">
-                                        <label class="form-check-label" for="kpr">KPR</label>
+                                        <label class="form-check-label" for="Mining">Mining</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="biasa" name="tujuan[]"
-                                            value="Biasa">
-                                        <label class="form-check-label" for="biasa">Biasa</label>
+                                        <input class="form-check-input" type="checkbox" id="Electricity"
+                                            name="industry[]" value="Biasa">
+                                        <label class="form-check-label" for="Electricity">Electricity</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="refinancing" name="tujuan[]"
-                                            value="Refinancing">
-                                        <label class="form-check-label" for="refinancing">Refinancing</label>
+                                        <input class="form-check-input" type="checkbox" id="Construction"
+                                            name="industry[]" value="Construction">
+                                        <label class="form-check-label" for="Construction">Construction</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="property" name="tujuan[]"
+                                        <input class="form-check-input" type="checkbox" id="property" name="industry[]"
                                             value="Property">
                                         <label class="form-check-label" for="property">Property</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="construction"
-                                            name="tujuan[]" value="Construction">
-                                        <label class="form-check-label" for="construction">Construction</label>
+                                        <input class="form-check-input" type="checkbox" id="Transportasi"
+                                            name="industry[]" value="Transportasi">
+                                        <label class="form-check-label" for="Transportasi">Transportasi</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="primary" name="tujuan[]"
-                                            value="Primary">
-                                        <label class="form-check-label" for="primary">Primary</label>
+                                        <input class="form-check-input" type="checkbox" id="Fishery" name="industry[]"
+                                            value="Fishery">
+                                        <label class="form-check-label" for="Fishery">Fishery</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="building" name="tujuan[]"
-                                            value="Building">
-                                        <label class="form-check-label" for="building">Building</label>
+                                        <input class="form-check-input" type="checkbox" id="Banking" name="industry[]"
+                                            value="Banking">
+                                        <label class="form-check-label" for="Banking">Banking</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="lain" name="tujuan[]"
-                                            value="Lain">
-                                        <label class="form-check-label" for="lain">Lain</label>
+                                        <input class="form-check-input" type="checkbox" id="Agro" name="industry[]"
+                                            value="Agro">
+                                        <label class="form-check-label" for="Agro">Agro</label>
                                     </div>
                                 </div>
                             </div>
@@ -152,41 +154,45 @@
                     <!-- Jenis Kredit Section -->
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <label>JENIS KREDIT</label>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" id="jenisKredit1"
-                                            name="jenis_kredit" value="Plafond">
-                                        <label class="form-check-label" for="jenisKredit1">Plafond</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" id="jenisKredit2"
-                                            name="jenis_kredit" value="Non Plafond">
-                                        <label class="form-check-label" for="jenisKredit2">Non Plafond</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" id="jenisKredit3"
-                                            name="jenis_kredit" value="Transaksional">
-                                        <label class="form-check-label" for="jenisKredit3">Transaksional</label>
+                            <!-- <label>JENIS KREDIT</label> -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nilai_kredit">NILAI KREDIT</label>
+                                        <input type="text" class="form-control" id="nilai_kredit" name="nilai_kredit">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bunga">BUNGA</label>
+                                        <input type="text" class="form-control" id="bunga" name="bunga">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bayar">TERM OF PAYMENT</label>
+                                        <input type="text" class="form-control" id="bayar" name="bayar">
+                                    </div>
+                                </div>
 
-                    <!-- Pekerjaan Section -->
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="pekerjaan">PEKERJAAN</label>
-                                <input type="text" class="form-control" id="pekerjaan" name="pekerjaan">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="jenis_pekerjaan">JENIS PEKERJAAN</label>
-                                <input type="text" class="form-control" id="jenis_pekerjaan" name="jenis_pekerjaan">
+                                <div class="col-md-6">
+                                    <label>JAMINAN :</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="jaminan1" name="jaminan"
+                                            value="Transfer">
+                                        <label class="form-check-label" for="jaminan1">Transfer</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="jaminan2" name="jaminan"
+                                            value="Bank Garansi">
+                                        <label class="form-check-label" for="jaminan2">Bank Garansi</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="jaminan3" name="jaminan"
+                                            value="Deposito">
+                                        <label class="form-check-label" for="jaminan3">Deposito</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -225,31 +231,6 @@
                         </div>
                     </div>
 
-                    <!-- Jaminan Section -->
-                    <div class="row mb-3">
-                        <div class="col-md-12">
-                            <label>JAMINAN</label>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" id="jaminan1" name="jaminan"
-                                            value="Tanah">
-                                        <label class="form-check-label" for="jaminan1">Tanah</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" id="jaminan2" name="jaminan"
-                                            value="Bangunan">
-                                        <label class="form-check-label" for="jaminan2">Bangunan</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" id="jaminan3" name="jaminan"
-                                            value="Kendaraan">
-                                        <label class="form-check-label" for="jaminan3">Kendaraan</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Prospek Pekerjaan Section -->
                     <div class="row mb-3">
