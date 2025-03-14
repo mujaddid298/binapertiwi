@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -24,11 +24,11 @@ return new class extends Migration
             $table->text('kapasitas_perusahaan');
             $table->text('kondisi_makro_lingkungan');
             $table->text('lampiran')->nullable();
-            $table->decimal('nilai_kredit_yang_disetujui', 15, 2)->nullable();
-            $table->text('analisa_tim_kredit_ho')->nullable();
+            $table->decimal('nilai_kredit', 15, 2)->nullable();
+            $table->text('analisa_tim_kredit')->nullable();
             $table->enum('status', ['tertunda', 'disetujui', 'disetujui dengan syarat', 'ditolak'])->default('tertunda');
             $table->decimal('nilai_kredit', 15, 2);
-            $table->string('term_of_payment');
+            $table->string('pembayaran');
             $table->decimal('bunga', 5, 2);
             $table->text('jaminan');
             $table->timestamps();
