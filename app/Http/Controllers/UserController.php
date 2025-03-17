@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Persetujuan;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class UserController extends Controller
     {
         return view('pages.form_nak');
     }
-    
+
     public function persetujuan()
     {
         return view('pages.persetujuan_nak');
@@ -27,5 +28,10 @@ class UserController extends Controller
 
         // Kirim data ke view
         return view('pages.persetujuan_nak', compact('persetujuan'));
+    }
+
+    public function meeting()
+    {
+        return view('pages.meeting');
     }
 }
