@@ -28,4 +28,3 @@ Route::get('/persetujuan_nak/create', [PersetujuanNakController::class, 'create'
 Route::post('/persetujuan_nak/store', [PersetujuanNakController::class, 'store'])->name('persetujuan_nak.store');
 
 Route::get('/meeting', [userController::class, 'meeting'])->name('pages.meeting');
-Route::get('/meeting', [userController::class, 'meeting'])->name('pages.create');

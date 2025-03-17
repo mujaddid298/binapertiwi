@@ -34,4 +34,17 @@ class UserController extends Controller
     {
         return view('pages.meeting');
     }
+    public function storeMeeting(Request $request)
+    {
+        // Validasi Input
+        $validated = $request->validate([
+            'judul' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'deskripsi' => 'required|string',
+            'status' => 'required|string|in:tertunda,disetujui,ditolak',
+        ]);
+
+        // Redirect ke Halaman Meeting setelah Menyimpan
+        return redirect()->route('pages.meeting')->with('success', 'Meeting Berhasil Ditambahkan');
+    }
 }
