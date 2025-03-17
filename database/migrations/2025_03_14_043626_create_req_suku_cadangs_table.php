@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hubungan_banks', function (Blueprint $table) {
+        Schema::create('req_suku_cadangs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kapasitas_perusahaan_id')->constrained()->onDelete('cascade');
-            $table->string('nama_lembaga');
-            $table->text('deskripsi');
+            $table->string('model_alat');
+            $table->year('tahun_buat');
+            $table->integer('jumlah');
+            $table->string('lokasi');
+            $table->text('perhitungan_kebutuhan');
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hubungan_banks');
+        Schema::dropIfExists('req_suku_cadangs');
     }
 };

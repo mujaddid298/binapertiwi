@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kapital_perusahaan', function (Blueprint $table) {
-            $table->id(); 
+            $table->id();
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('fasilitas_id');
+
             $table->string('penjualan_perbulan');
             $table->string('penjualan_pertahun');
             $table->text('keterangan');

@@ -18,6 +18,8 @@ Route::middleware([CheckRole::class . ':admin'])->group(function () {
     Route::get('/home', [UserController::class, 'home'])->name('home');
     Route::get('/admin', [UserController::class, 'admin']);
 });
+<<<<<<< HEAD
+=======
 
 // You can add more routes that require the 'admin' role here
 
@@ -25,3 +27,4 @@ Route::get('/form_nak', [userController::class, 'formnak'])->name('pages.formnak
 Route::get('/persetujuan_nak', [UserController::class, 'index'])->name('pages.persetujuan');
 Route::get('/persetujuan_nak/create', [PersetujuanNakController::class, 'create'])->name('persetujuan_nak.create');
 Route::post('/persetujuan_nak/store', [PersetujuanNakController::class, 'store'])->name('persetujuan_nak.store');
+>>>>>>> a6b12f1eac759cbbb568b92e39468774532e17c4

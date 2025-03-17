@@ -13,13 +13,10 @@ return new class extends Migration
     {
         Schema::create('pengesahan', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('nak_id')->constrained('naks')->onDelete('cascade');
-            $table->string('komite_kredit');
+            $table->string('jabatan');
             $table->string('tanda_tangan');
-            $table->string('dir_admin_support');
-            $table->string('dir_sales_op');
-            $table->string('admin_support_head');
-            $table->string('sales_op_head');
             $table->timestamps();
         });
         

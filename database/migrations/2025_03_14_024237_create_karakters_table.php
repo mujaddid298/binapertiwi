@@ -13,17 +13,18 @@ return new class extends Migration
     {
         Schema::create('karakters', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('keuangan_perusahaan_id')->constrained('keuangan_perusahaan')->onDelete('cascade');
+
             $table->string('bentuk_perusahaan');
             $table->date('waktu_didirikan');
             $table->string('akte_perubahan');
-            $table->date('pengesahan');
-            $table->string('menteri_kehakiman');
+            $table->string('pengesahan');
+            $table->string('manajemen_kehakiman');
             $table->string('domisili');
             $table->string('notaris');
-            $table->decimal('modal_dasar', 15, 2);
-            $table->foreignId('modal_disetor_id')->constrained('modal_disetors')->onDelete('cascade');
-            $table->integer('umur_perusahaan');
-            $table->text('struktur_organisasi');
+            $table->string('umur_perusahaan');
+            $table->string('struktur_organisasi');
             $table->timestamps();
         });
     }

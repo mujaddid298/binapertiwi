@@ -14,27 +14,20 @@ return new class extends Migration
         Schema::create('kapasitas_perusahaan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('hubungan_bank_id');
+            $table->unsignedBigInteger('reputasi_id');
+            $table->unsignedBigInteger('usaha_sampingan_id');
+            $table->unsignedBigInteger('req_suku_cadang_id');
 
-            $table->string('hasil_pengecekan_reputasi');
-            $table->string('sumber_informasi');
-            $table->string('hubungan');
-            $table->string('hasil_pengecekan');
             $table->string('status_piutang');
             $table->string('kategori_piutang');
             $table->string('pengalaman_pembayaran');
-            $table->string('usaha_lainnya_nama');
-            $table->string('usaha_lainnya_alamat');
-            $table->string('usaha_lainnya_bidang_usaha');
-            $table->text('analisa_kebutuhan');
-            $table->string('model_alat');
-            $table->year('tahun_buat');
-            $table->integer('jumlah');
-            $table->string('lokasi');
-            $table->text('perhitungan_kebutuhan');
+        
             $table->timestamps();
 
-
             $table->foreign('hubungan_bank_id')->references('id')->on('hubungan_banks')->onDelete('cascade');
+            $table->foreign('reputasi_id')->references('id')->on('reputasis ')->onDelete('cascade');
+            $table->foreign('usaha_sampingan_id')->references('id')->on('usaha_sampingan ')->onDelete('cascade');
+            $table->foreign('req_suku_cadang_id')->references('id')->on('req_suku_cadangs ')->onDelete('cascade');
 
         });
         
