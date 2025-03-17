@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('fasilitas_id');
-
             $table->string('penjualan_perbulan');
             $table->string('penjualan_pertahun');
             $table->text('keterangan');

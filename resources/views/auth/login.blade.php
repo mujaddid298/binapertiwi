@@ -35,24 +35,27 @@
                             <h3 class="mb-0"><b>Login</b></h3>
                             <a href="#" class="link-primary">Don't have an account?</a>
                         </div>
-                        <div class="form-group mb-3">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control" placeholder="Email Address">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label class="form-label">Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
-                        </div>
-                        <div class="d-flex mt-1 justify-content-between">
-                            <div class="form-check">
-                                <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="">
-                                <label class="form-check-label text-muted" for="customCheckc1">Keep me sign in</label>
+                        <form action="{{ route('role.login') }}" method="POST">
+                            @csrf
+                            <div class="form-group mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" name="email" class="form-control" placeholder="Email Address" required>
                             </div>
-                            <a href="#" class="text-secondary f-w-400">Forgot Password?</a>
-                        </div>
-                        <div class="d-grid mt-4">
-                            <button type="button" class="btn btn-primary">Login</button>
-                        </div>
+                            <div class="form-group mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                            </div>
+                            <div class="d-flex mt-1 justify-content-between">
+                                <div class="form-check">
+                                    <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="">
+                                    <label class="form-check-label text-muted" for="customCheckc1">Keep me sign in</label>
+                                </div>
+                                <a href="#" class="text-secondary f-w-400">Forgot Password?</a>
+                            </div>
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="auth-footer row">

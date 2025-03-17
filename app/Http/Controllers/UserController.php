@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function home()
-    {
-        return view('pages.home');
-    }
+        public function home()
+        {
+            return view('pages.home');
+        }
 
     public function formnak()
     {
         return view('pages.form_nak');
-    }
+    }   
     
     public function persetujuan()
     {
