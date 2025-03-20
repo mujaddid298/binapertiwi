@@ -44,6 +44,10 @@
     <script src="{{ asset('assets/js/fonts/custom-font.js') }}"></script>
     <script src="{{ asset('assets/js/pcoded.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/feather.min.js') }}"></script>
+    <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script>layout_change('light');</script>
     <script>change_box_container('false');</script>
     <script>layout_rtl_change('false');</script>

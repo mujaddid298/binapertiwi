@@ -31,9 +31,9 @@
           </a>
         </li>
         <li class="pc-item">
-          <a href="{{ url('/elements/bc_color') }}" class="pc-link">
+          <a href="{{ route('admin.datacustomer') }}" class="pc-link">
             <span class="pc-micon"><i class="ti ti-color-swatch"></i></span>
-            <span class="pc-mtext">Color</span>
+            <span class="pc-mtext">Data Customer</span>
           </a>
         </li>
         <li class="pc-item">

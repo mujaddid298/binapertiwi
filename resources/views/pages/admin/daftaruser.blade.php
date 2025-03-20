@@ -11,7 +11,7 @@
           <div class="page-header-title">
             <h5 class="m-b-10">Daftar Pengguna</h5>
           </div>
-          <ul class="breadcrumb"> 
+          <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin.daftaruser') }}">Daftar Pengguna</a></li>
             {{-- <li class="breadcrumb-item" aria-current="page">Dashboard</li> --}}
           </ul>

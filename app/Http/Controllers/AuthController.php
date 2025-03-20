@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth; 
 
 class AuthController extends Controller
 { 
@@ -27,7 +27,7 @@ class AuthController extends Controller
             $user = Auth::user();
             if ($user->role === 'admin') {
                 // Jika admin, redirect ke halaman admin
-                return redirect()->intended('pages/admin/home');
+                return redirect()->intended('admin/home');
             } elseif ($user->role === 'bc') {
                 // Jika editor, redirect ke halaman editor
                 return redirect()->intended('/editor');
@@ -41,5 +41,13 @@ class AuthController extends Controller
         return back()->withErrors([
             'email' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
         ]);
+    }
+
+    public function logout(Request $request) {
+        // Menghapus sesi pengguna
+        Auth::logout();
+
+        // Mengalihkan pengguna ke halaman login dengan pesan sukses
+        return redirect('/login')->with('success', 'Anda telah berhasil logout.');
     }
 }
