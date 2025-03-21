@@ -28,3 +28,9 @@ Route::get('/persetujuan_nak/create', [PersetujuanNakController::class, 'create'
 Route::post('/persetujuan_nak/store', [PersetujuanNakController::class, 'store'])->name('persetujuan_nak.store');
 
 Route::get('/meeting', [userController::class, 'meeting'])->name('pages.meeting');
+Route::get('/form_cetak', [userController::class, 'formcetak'])->name('pages.form_cetak');
+// Route::post('/cetak', [UserController::class, 'cetak'])->name('pages.cetak');
+Route::get('/cetak', [UserController::class, 'cetak'])->name('pages.cetak');
+
+Route::post('/cetak-preview', [UserController::class, 'previewCetak'])->name('cetak.preview');
+Route::post('/cetak-pdf', [UserController::class, 'generatePdf'])->name('formcetak.pdf');
