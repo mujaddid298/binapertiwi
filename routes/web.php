@@ -34,3 +34,5 @@ Route::get('/cetak', [UserController::class, 'cetak'])->name('pages.cetak');
 
 Route::post('/cetak-preview', [UserController::class, 'previewCetak'])->name('cetak.preview');
 Route::post('/cetak-pdf', [UserController::class, 'generatePdf'])->name('formcetak.pdf');
+
+Route::get('/form_openblock', [userController::class, 'openblock'])->name('pages.form_openblock');

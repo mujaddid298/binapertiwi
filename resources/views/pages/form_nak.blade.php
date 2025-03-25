@@ -131,6 +131,29 @@
             <td>Rp <input type="text" class="form-control"></td>
         </tr>
     </table>
+    <table border="1" width="100%" cellspacing="0" cellpadding="5">
+        <tr>
+            <th colspan="4">LAMA PERUSAHAAN BEROPERASI DIBIDANG USAHANYA</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox"> &lt; 1 THN</td>
+            <td><input type="checkbox"> 0 - 5 THN</td>
+            <td><input type="checkbox"> 5 - 10 THN</td>
+            <td><input type="checkbox"> &gt; 10 TH</td>
+        </tr>
+        <tr>
+            <th colspan="4">STRUKTUR ORGANISASI & MANAGEMENT</th>
+        </tr>
+        <tr>
+            <td colspan="4"><input type="checkbox"> KEPUTUSAN DITANGAN SEORANG ................................</td>
+        </tr>
+        <tr>
+            <td colspan="4"><input type="checkbox"> DIREKSI TERDIRI DARI ANGGOTA KELUARGA</td>
+        </tr>
+        <tr>
+            <td colspan="4"><input type="checkbox"> MANAGEMENT PROFESIONAL</td>
+        </tr>
+    </table>
 
     <h6 class="mt-4">KAPITAL PERUSAHAAN</h6>
     <table class="table table-bordered">

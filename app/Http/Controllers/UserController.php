@@ -71,4 +71,10 @@ class UserController extends Controller
         // return $pdf->stream('form_pengajuan_kredit.pdf');
         return $pdf->download('form_pengajuan_kredit.pdf');
     }
+
+    public function openblock()
+    {
+        return view('pages.form_openblock');
+    }
+ 
 }
