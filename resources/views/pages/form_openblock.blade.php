@@ -39,7 +39,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Cabang</label>
-                                <input type="text" class="form-control" name="cabang" value="Tebing Tinggi" readonly>
+                                <input type="text" class="form-control" name="cabang" placeholder="nama cabang"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label>Customer Code</label>
