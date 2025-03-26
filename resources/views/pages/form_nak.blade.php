@@ -12,7 +12,7 @@
                     <h5 class="m-b-10">Home</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item" aria-current="page">Form NAK</li>
                 </ul>
             </div>
@@ -27,30 +27,34 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="row align-items-center">NOTA APLIKASI KREDIT PKP2</h5>
+                <h4 class="text-center fw-bold">FORM NOTA APLIKASI KREDIT </h4>
             </div>
             <div class="card-body">
                 <form action="#" method="POST">
-                    @csrf
-
+                    @csrf   
                     <!-- Top Section -->
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="tanggal">TANGGAL</label>
-                                <input type="date" class="form-control" id="tanggal" name="tanggal">
+                                <label for="nama_bc">NAMA BC</label>
+                                <input type="text" class="form-control" id="nama_bc" name="nama_bc">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="cabang">CABANG</label>
-                                <input type="text" class="form-control" id="cabang" name="cabang">
+                                <select class="form-control" id="cabang" name="cabang">
+                                    <option value="">Pilih Cabang</option>
+                                    <option value="pekanbaru">Pekanbaru</option>
+                                    <option value="pelembang">Pelembang</option>
+                                    <option value="tanjunenim">Tanjun Enim</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="nama_bc">NAMA BC</label>
-                                <input type="text" class="form-control" id="nama_bc" name="nama_bc">
+                                <label for="tanggal">TANGGAL</label>
+                                <input type="date" class="form-control" id="tanggal" name="tanggal">
                             </div>
                         </div>
                     </div>
@@ -59,7 +63,7 @@
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="nama">NAMA</label>
+                                <label for="nama">NAMA CUSTOMER</label>
                                 <input type="text" class="form-control" id="nama" name="nama">
                             </div>
                         </div>
@@ -245,7 +249,7 @@
                     <!-- Riwayat Keuangan Section -->
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <label>RIWAYAT KEUANGAN</label>
+                            <h4>RIWAYAT KEUANGAN</h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -293,7 +297,7 @@
                     <!-- Alamat Section -->
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <h6>ALAMAT PERUSAHAAN</h6>
+                            <h4>ALAMAT PERUSAHAAN</h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -403,7 +407,7 @@
                     <!-- Karakteristik Pemohon Section -->
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <label>KARAKTERISTIK PEMOHON</label>
+                            <h4>KARAKTERISTIK PEMOHON</h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -463,7 +467,7 @@
                     <!-- Jumlah Tanggungan Section -->
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <label>JUMLAH TANGGUNGAN PEMOHON</label>
+                            <h4>JUMLAH TANGGUNGAN PEMOHON</h4>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">

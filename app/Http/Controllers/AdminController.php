@@ -10,8 +10,8 @@ use App\Imports\CustomerImport;
 
 class AdminController extends Controller
 {
-        public function home()
-    {
+    public function home()
+    { 
         return view('pages.admin.home');
     }
 

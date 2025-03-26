@@ -6,8 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PersetujuanNakController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Middleware\CheckRole;
-use App\Http\Controllers\MeetingController;
+use App\Http\Middleware\CheckRole; 
 
 // Public routes
 Route::get('/', function () {
@@ -21,9 +20,9 @@ Route::get('/login', [AuthController::class, 'login']);
 Route::middleware([CheckRole::class . ':admin'])->group(function () {
     Route::get('/admin/home', [AdminController::class, 'home'])->name('admin.home');
     Route::get('/admin/daftaruser', [AdminController::class, 'daftaruser'])->name('admin.daftaruser');
-    Route::get('/admin/datacustomer', [AdminController::class, 'datacustomer'])->name('admin.datacustomer');
-    Route::post('/admin/upload-excel', [AdminController::class, 'uploadExcel'])->name('admin.uploadExcel');
 });
+Route::get('/admin/datacustomer', [AdminController::class, 'datacustomer'])->name('admin.datacustomer');
+Route::post('/admin/upload-excel', [AdminController::class, 'uploadExcel'])->name('admin.uploadExcel');
 
 
 Route::get('/form_nak', [userController::class, 'formnak'])->name('pages.formnak');

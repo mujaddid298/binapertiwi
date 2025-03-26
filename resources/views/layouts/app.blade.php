@@ -25,7 +25,7 @@
 </head>
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
 
-    @include('layouts.partials.sidebar')
+    @include('layouts.sidebar')
 
     <!-- [ Main Content ] start -->
     <div class="pc-container">
@@ -35,7 +35,7 @@
     </div>
     <!-- [ Main Content ] end -->
 
-    @include('layouts.partials.footer')
+    @include('layouts.footer')
 
     <!-- Required Js -->
     <script src="{{ asset('assets/js/plugins/popper.min.js') }}"></script>

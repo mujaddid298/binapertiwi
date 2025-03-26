@@ -67,7 +67,8 @@
                 <th>INDUSTRI</th>
                 <th>BIDANG USAHA</th>
                 <th>GROUP PERUSAHAAN</th>
-                <th>PENANGGUNG JAWAB</th> 
+                <th>PENANGGUNG JAWAB</th>
+                <th>AKSI</th>
               </tr>
             </thead>
             <tbody>
