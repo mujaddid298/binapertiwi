@@ -37,3 +37,15 @@ Route::get('/meeting', [userController::class, 'meeting'])->name('pages.create')
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+<<<<<<< HEAD
+=======
+Route::get('/meeting', [userController::class, 'meeting'])->name('pages.meeting');
+Route::get('/form_cetak', [userController::class, 'formcetak'])->name('pages.form_cetak');
+// Route::post('/cetak', [UserController::class, 'cetak'])->name('pages.cetak');
+Route::get('/cetak', [UserController::class, 'cetak'])->name('pages.cetak');
+
+Route::post('/cetak-preview', [UserController::class, 'previewCetak'])->name('cetak.preview');
+Route::post('/cetak-pdf', [UserController::class, 'generatePdf'])->name('formcetak.pdf');
+
+Route::get('/form_openblock', [userController::class, 'openblock'])->name('pages.form_openblock');
+>>>>>>> 8c79a8f9ff7576d75f1e7c35515c1bb474b163b3

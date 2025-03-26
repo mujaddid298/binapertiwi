@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persetujuan;
+<<<<<<< HEAD
 use Illuminate\Http\Request; 
+=======
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+>>>>>>> 8c79a8f9ff7576d75f1e7c35515c1bb474b163b3
 class UserController extends Controller
 {
         public function home()
@@ -46,4 +52,33 @@ class UserController extends Controller
         // Redirect ke Halaman Meeting setelah Menyimpan
         return redirect()->route('pages.meeting')->with('success', 'Meeting Berhasil Ditambahkan');
     }
+
+    public function formcetak()
+    {
+        return view('pages.form_cetak');
+    }
+
+    public function cetak(Request $request)
+    {
+        $data = $request->all();
+        return view('pages.cetak', compact('data'));
+    }
+
+
+    public function generatePdf(Request $request)
+    {
+        $data = $request->all();
+
+        $pdf = Pdf::loadView('pages.cetak', ['data' => $data])
+            ->setPaper('A4', 'portrait');
+
+        // return $pdf->stream('form_pengajuan_kredit.pdf');
+        return $pdf->download('form_pengajuan_kredit.pdf');
+    }
+
+    public function openblock()
+    {
+        return view('pages.form_openblock');
+    }
+ 
 }
