@@ -19,9 +19,10 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, ...$role): Response
     {
-        if(in_array($request->user()->role, $role)) {
-            return $next($request);
-            }
+        // Cek jika pengguna tidak memiliki role
+        if (!$request->user() || !in_array($request->user()->role, $role)) {
+            return redirect()->route('login');
+        }
 
         return $next($request);
     }

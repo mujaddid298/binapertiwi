@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('persetujuan_nak', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('nak_id')->constrained('naks')->onDelete('cascade');
+            $table->id(); 
             $table->foreignId('komite_id')->constrained('users')->onDelete('cascade');
             $table->enum('status', ['tertunda', 'disetujui', 'disetujui dengan syarat', 'ditolak'])->default('tertunda');
             $table->text('komen')->nullable();

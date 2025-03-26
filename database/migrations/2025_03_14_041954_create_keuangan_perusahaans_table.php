@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('keuangan_perusahaans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('detail_perusahaan_id')->constrained('detail_perusahaans')->onDelete('cascade');
             $table->decimal('modal_dasar', 15, 2);
             $table->decimal('modal_disetor', 15, 2);
             $table->string('nama');

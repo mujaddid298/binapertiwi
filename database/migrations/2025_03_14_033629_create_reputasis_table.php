@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reputasis', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('kapasitas_perusahaan_id')->constrained()->onDelete('cascade');
+            $table->id(); 
             $table->string('sumber_informasi');
             $table->string('hubungan');
             $table->string('hasil_pengecekan');

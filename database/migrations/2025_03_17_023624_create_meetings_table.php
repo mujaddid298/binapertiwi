@@ -9,10 +9,10 @@ return new class extends Migration {
     {
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->date('date');
-            $table->text('description');
-            $table->boolean('status')->default(false); // Default meeting belum diumumkan
+            $table->string('judul');
+            $table->date('tanggal');
+            $table->text('deskripsi');
+            $table->string('status');
             $table->timestamps();
         });
     }

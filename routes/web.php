@@ -14,15 +14,15 @@ Route::get('/', function () {
 });
 
 Route::post('/role-login', [AuthController::class, 'RoleLogin'])->name('role.login');
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 // Group routes that require the 'admin' role
 Route::middleware([CheckRole::class . ':admin'])->group(function () {
     Route::get('/admin/home', [AdminController::class, 'home'])->name('admin.home');
     Route::get('/admin/daftaruser', [AdminController::class, 'daftaruser'])->name('admin.daftaruser');
+    Route::get('/admin/datacustomer', [AdminController::class, 'datacustomer'])->name('admin.datacustomer');
+    Route::post('/admin/upload-excel', [AdminController::class, 'uploadExcel'])->name('admin.uploadExcel');
 });
-Route::get('/admin/datacustomer', [AdminController::class, 'datacustomer'])->name('admin.datacustomer');
-Route::post('/admin/upload-excel', [AdminController::class, 'uploadExcel'])->name('admin.uploadExcel');
 
 
 Route::get('/form_nak', [userController::class, 'formnak'])->name('pages.formnak');
@@ -33,7 +33,7 @@ Route::post('/persetujuan_nak/store', [PersetujuanNakController::class, 'store']
 
 Route::get('/meeting', [userController::class, 'meeting'])->name('pages.meeting');
 Route::get('/meeting', [userController::class, 'meeting'])->name('pages.create');
- 
+
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
- 
+

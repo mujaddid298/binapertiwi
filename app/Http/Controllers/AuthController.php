@@ -28,6 +28,10 @@ class AuthController extends Controller
             $user = Auth::user();
             Log::info('Pengguna berhasil login', ['user' => $user]);
 
+            // Simpan role ke dalam sesi
+            session(['role' => $user->role]);
+            Log::info('Role disimpan dalam sesi', ['role' => $user->role]);
+
             if ($user->role === 'admin') {
                 // Jika admin, redirect ke halaman admin
                 return redirect()->intended('admin/home');
@@ -56,5 +60,11 @@ class AuthController extends Controller
 
         // Mengalihkan pengguna ke halaman login dengan pesan sukses
         return redirect('/login')->with('success', 'Anda telah berhasil logout.');
+    }
+
+    // Untuk mengambil role dari sesi
+    public function someMethod() {
+        $role = session('role');
+        // Gunakan $role sesuai kebutuhan
     }
 }

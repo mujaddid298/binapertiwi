@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('alamat');
-            $table->enum('role', ['bc', 'komite']);
+            $table->enum('role', ['bc', 'komite','admin','user']);
             $table->integer('level'); // 0,1,2,3
             $table->string('jabatan')->nullable();
             $table->string('password');
@@ -38,6 +38,7 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+            $table->string('role')->nullable();
         });
     }
 
