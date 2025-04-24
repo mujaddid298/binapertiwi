@@ -38,11 +38,21 @@
                             @csrf
                             <div class="form-group mb-3">
                                 <label class="form-label">Email Address</label>
-                                <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email Address" required>
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required>
+                                @error('password')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="d-flex mt-1 justify-content-between">
                                 <div class="form-check">

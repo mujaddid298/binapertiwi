@@ -24,7 +24,7 @@
   <!-- [ Upload Excel Button ] start -->
   <div class="col-md-12">
     <!-- Button to Open the Modal -->
-    <button type="button" class="btn mb-3 btn-primary" data-toggle="modal" data-target="#uploadModal">
+    <button type="button" class="btn btn-green mb-3" data-toggle="modal" data-target="#uploadModal">
       Upload Excel
     </button>
 
@@ -79,7 +79,8 @@
                 <td>{{ $customer->industry }}</td>
                 <td>{{ $customer->bidang_usaha }}</td>
                 <td>{{ $customer->group_perusahaan }}</td>
-                <td>{{ $customer->penanggung_jawab }}</td> 
+                <td>{{ $customer->penanggung_jawab }}</td>
+                <td></td>
               </tr>
               @endforeach
             </tbody>

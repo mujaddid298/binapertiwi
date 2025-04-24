@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HubunganBank extends Model
+class Reputasi extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nama_lembaga',
-        'deskripsi',
+        'sumber_informasi',
+        'hubungan',
+        'hasil_pengecekan',
     ];
 }

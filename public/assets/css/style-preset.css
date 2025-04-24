@@ -16,8 +16,8 @@ h2 {
   --bs-body-bg-rgb: 250, 250, 251;
   --pc-heading-color: #343a40;
   --pc-active-background: #e9ecef;
-  --pc-sidebar-background: #fff;
-  --pc-sidebar-color: #141414;
+  --pc-sidebar-background: #258221;
+  --pc-sidebar-color: #ffffff;
   --pc-sidebar-color-rgb: 20, 20, 20;
   --pc-sidebar-active-color: var(--bs-primary);
   --pc-sidebar-shadow: 1px 0 0 0px rgb(240 240 240);
@@ -33,14 +33,14 @@ h2 {
 [data-pc-theme_contrast=true] {
   --bs-body-bg: #ffffff;
   --pc-sidebar-background: transparent;
-  --pc-sidebar-active-color: #1890ff;
-  --pc-sidebar-shadow: 1px 0 3px 0px #dee2e6;
+  --pc-sidebar-active-color: #ffffff;
+  --pc-sidebar-shadow: 1px 0 3px 0px #8a8a8a;
   --pc-sidebar-border: none;
   --pc-card-box-shadow: 0px 8px 24px rgba(27, 46, 94, 0.08);
 }
 
 [data-pc-preset=preset-1] {
-  --pc-sidebar-active-color: #1890ff;
+  --pc-sidebar-active-color: #fdfdfd;
   --bs-blue: #1890ff;
   --bs-primary: #1890ff;
   --bs-primary-rgb: 24, 144, 255;
@@ -652,7 +652,7 @@ h2 {
 }
 
 [data-pc-preset=preset-4] {
-  --pc-sidebar-active-color: #068e44;
+  --pc-sidebar-active-color: #f1f1f1;
   --bs-blue: #068e44;
   --bs-primary: #068e44;
   --bs-primary-rgb: 6, 142, 68;

@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persetujuan;
-<<<<<<< HEAD
-use Illuminate\Http\Request; 
-=======
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
->>>>>>> 8c79a8f9ff7576d75f1e7c35515c1bb474b163b3
 class UserController extends Controller
 {
         public function home()
@@ -21,7 +18,7 @@ class UserController extends Controller
     {
         return view('pages.form_nak');
     }
-    
+
     public function persetujuan()
     {
         return view('pages.persetujuan_nak');
@@ -80,5 +77,5 @@ class UserController extends Controller
     {
         return view('pages.form_openblock');
     }
- 
+
 }

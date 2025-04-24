@@ -14,6 +14,32 @@ class AdminController extends Controller
     { 
         return view('pages.admin.home');
     }
+    public function formnak()
+    { 
+        return view('pages.admin.form_nak');
+    }
+    public function openblock()
+    { 
+        return view('pages.admin.form_openblock');
+    }
+    public function level1()
+    { 
+        return view('pages.admin.level1');
+    }
+    public function level3()
+    { 
+        return view('pages.admin.level3');
+    }
+
+    public function persetujuan3()
+    { 
+        return view('pages.admin.persetujuan3');
+    }
+
+    public function detail()
+    { 
+        return view('pages.admin.detail');
+    }
 
     public function datacustomer()
     {

@@ -11,21 +11,22 @@
                     <h5 class="m-b-10">Form Pengajuan Kredit</h5>
                 </div>
                 <ul class="breadcrumb">
-<<<<<<< HEAD
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item" aria-current="page">Form NAK</li>
-=======
-                    <li class="breadcrumb-item"><a href="#">Daftar Pengguna</a></li>
->>>>>>> 8c79a8f9ff7576d75f1e7c35515c1bb474b163b3
                 </ul>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container p-4" style="font-size: 13px; border: 1px solid #000;">
+<!-- [ Main Content ] start -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+<div class="container p-4" style="font-size: 13px;  ">
     <h5 class="text-center mb-3">NOTA APLIKASI KREDIT PKPS</h5>
-    <table class="table table-bordered">
+    <table class="table ">
         <tr>
             <td><strong>CABANG</strong></td>
             <td><input type="text" class="form-control"></td>
@@ -35,18 +36,11 @@
             <td><input type="text" class="form-control"></td>
         </tr>
     </table>
-
-<<<<<<< HEAD
-<!-- [ Main Content ] start -->
-<div class="row">
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header">
                 <h4 class="text-center fw-bold">FORM NOTA APLIKASI KREDIT </h4>
             </div>
             <div class="card-body">
                 <form action="#" method="POST">
-                    @csrf   
+                    @csrf
                     <!-- Top Section -->
                     <div class="row mb-3">
                         <div class="col-md-4">
@@ -73,7 +67,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Personal Information Section -->
                     <div class="row mb-3">
                         <div class="col-md-4">
@@ -95,16 +88,14 @@
                             </div>
                         </div>
                     </div>
-=======
     <h6 class="mt-4">PERUSAHAAN PELANGGAN</h6>
-    <table class="table table-bordered">
+    <table class="table ">
         <tr>
             <td><strong>NAMA</strong></td>
             <td colspan="4"><input type="text" class="form-control"></td>
             <td><strong>BIDANG USAHA</strong></td>
             <td><input type="text" class="form-control"></td>
         </tr>
-
         <tr>
             <td><strong>ALAMAT</strong></td>
             <td colspan="4"><input type="text" class="form-control"></td>
@@ -127,13 +118,12 @@
                 <label><input type="checkbox"> Banking </label>
                 <label><input type="checkbox"> Agro </label>
             </td>
->>>>>>> 8c79a8f9ff7576d75f1e7c35515c1bb474b163b3
 
         </tr>
     </table>
 
     <h6 class="mt-4">PENGAJUAN KREDIT</h6>
-    <table class="table table-bordered">
+    <table class="table ">
         <tr>
             <td><strong>NILAI KREDIT</strong></td>
             <td><input type="text" class="form-control"></td>
@@ -153,7 +143,7 @@
     </table>
 
     <h6 class="mt-4">KARAKTER PERUSAHAAN</h6>
-    <table class="table table-bordered">
+    <table class="table ">
         <tr>
             <td><strong>BENTUK PERUSAHAAN</strong></td>
             <td colspan="4">
@@ -167,7 +157,7 @@
             </td>
         </tr>
     </table>
-    <table class="table table-bordered">
+    <table class="table ">
         <tr>
             <td><strong>WAKTU DIDIRIKAN</strong></td>
             <td><input type="text" class="form-control"></td>
@@ -222,7 +212,7 @@
     </table>
 
     <h6 class="mt-4">KAPITAL PERUSAHAAN</h6>
-    <table class="table table-bordered">
+    <table class="table ">
         <tr>
             <td><strong>RATA-RATA PER BULAN</strong></td>
             <td><input type="text" class="form-control"></td>
@@ -233,7 +223,7 @@
         </tr>
     </table>
 
-<<<<<<< HEAD
+
                     <!-- Jenis Kredit Section -->
                     <div class="row mb-3">
                         <div class="col-md-12">
@@ -577,7 +567,7 @@
                         <div class="col-md-12">
                             <h6>RINCIAN OMSET HARIAN & BULANAN TOKO DEBITUR</h6>
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table ">
                                     <thead>
                                         <tr>
                                             <th>NO.</th>
@@ -612,7 +602,7 @@
                         <div class="col-md-12">
                             <h6>PENGELUARAN RUTIN TEMPAT USAHA</h6>
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table ">
                                     <thead>
                                         <tr>
                                             <th>JENIS</th>
@@ -662,7 +652,7 @@
                         <div class="col-md-12">
                             <h6>TENOR LAYANAN DEBITUR/NASABAH TERHITUNG SEJAK</h6>
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table ">
                                     <thead>
                                         <tr>
                                             <th>BULAN</th>
@@ -715,7 +705,7 @@
                         <div class="col-md-12">
                             <h6>CATATAN TAMBAHAN</h6>
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table ">
                                     <thead>
                                         <tr>
                                             <th>KETERANGAN</th>
@@ -865,9 +855,9 @@
             </div>
         </div>
     </div>
-=======
+
     <h6 class="mt-4">FASILITAS YANG DIMILIKI</h6>
-    <table class="table table-bordered">
+    <table class="table ">
         <tr>
             <th>NO</th>
             <th>FASILITAS</th>
@@ -882,6 +872,6 @@
             </tr>
             @endfor
     </table>
->>>>>>> 8c79a8f9ff7576d75f1e7c35515c1bb474b163b3
+
 </div>
 @endsection

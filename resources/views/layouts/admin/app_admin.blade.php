@@ -22,6 +22,18 @@
     <!-- [Template CSS Files] -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style-link">
     <link rel="stylesheet" href="{{ asset('assets/css/style-preset.css') }}">
+    <style>
+        .btn-green{
+          background-color: #2b9028;
+          color: white;
+          border: none;
+        }
+        .btn-green:hover{
+          background-color: #1e5c1a;
+          color: white;
+          border: none;
+        }
+     </style>
 </head>
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
 

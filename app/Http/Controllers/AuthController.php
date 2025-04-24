@@ -37,7 +37,7 @@ class AuthController extends Controller
                 return redirect()->intended('admin/home');
             } elseif ($user->role === 'bc') {
                 // Jika editor, redirect ke halaman editor
-                return redirect()->intended('/editor');
+                return redirect()->intended('/bc');
             } elseif ($user->role === 'komite') {
                 // Jika viewer, redirect ke halaman viewer
                 return redirect()->intended('/home');

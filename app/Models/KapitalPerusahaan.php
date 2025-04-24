@@ -14,7 +14,7 @@ class KapitalPerusahaan extends Model
 
     // Kolom yang dapat diisi secara massal
     protected $fillable = [
-        'customer_id', 
+        'fasilitas_id',
         'penjualan_perbulan',
         'penjualan_pertahun',
         'keterangan',
@@ -30,6 +30,6 @@ class KapitalPerusahaan extends Model
     // Relasi dengan model Fasilitas
     public function fasilitas()
     {
-        return $this->belongsTo(Fasilitas::class);
+        return $this->belongsTo(Fasilitas::class, 'fasilitas_id');
     }
 }

@@ -5,25 +5,26 @@
   </div>
 </div>
 
+
 <nav class="pc-sidebar">
   <div class="navbar-wrapper">
     <div class="m-header">
-      <a href="{{ url('/dashboard') }}" class="b-brand">
+      <a href="{{ route('admin.home') }}" class="b-brand">
         <img src="{{ asset('assets/images/logo/bp.png') }}" width="150" class="mt-2 img-fluid logo-lg" alt="logo">
       </a>
     </div>
     <div class="navbar-content">
       <ul class="pc-navbar">
         <li class="pc-item">
-          <a href="{{ url('/dashboard') }}" class="pc-link">
+          <a href="{{ route('admin.home') }}" class="pc-link">
             <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
             <span class="pc-mtext">Dashboard</span>
           </a>
         </li>
-        <li class="pc-item pc-caption">
-          <label>UI Components</label>
+        {{-- <li class="pc-item pc-caption">
+          <label style="color: white;"></label>
           <i class="ti ti-dashboard"></i>
-        </li>
+        </li> --}}
         <li class="pc-item">
           <a href="{{ route('admin.daftaruser') }}" class="pc-link">
             <span class="pc-micon"><i class="ti ti-users"></i></span>
@@ -32,37 +33,22 @@
         </li>
         <li class="pc-item">
           <a href="{{ route('admin.datacustomer') }}" class="pc-link">
-            <span class="pc-micon"><i class="ti ti-color-swatch"></i></span>
+            <span class="pc-micon"><i class="ti ti-notes"></i></span>
             <span class="pc-mtext">Data Customer</span>
           </a>
         </li>
-        <li class="pc-item">
+        {{-- <li class="pc-item">
           <a href="{{ url('/elements/icon-tabler') }}" class="pc-link">
             <span class="pc-micon"><i class="ti ti-plant-2"></i></span>
             <span class="pc-mtext">Icons</span>
           </a>
-        </li>
+        </li> --}}
+
         <li class="pc-item pc-caption">
-          <label>Pages</label>
-          <i class="ti ti-news"></i>
-        </li>
-        <li class="pc-item">
-          <a href="{{ url('/pages/login') }}" class="pc-link">
-            <span class="pc-micon"><i class="ti ti-lock"></i></span>
-            <span class="pc-mtext">Login</span>
-          </a>
-        </li>
-        <li class="pc-item">
-          <a href="{{ url('/pages/register') }}" class="pc-link">
-            <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
-            <span class="pc-mtext">Register</span>
-          </a>
-        </li>
-        <li class="pc-item pc-caption">
-          <label>Other</label>
+          <label style="color: white;">Sistem</label>
           <i class="ti ti-brand-chrome"></i>
         </li>
-        <li class="pc-item pc-hasmenu">
+        {{-- <li class="pc-item pc-hasmenu">
           <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-menu"></i></span><span class="pc-mtext">Menu levels</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
           <ul class="pc-submenu">
             <li class="pc-item"><a class="pc-link" href="#!">Level 2.1</a></li>
@@ -95,11 +81,11 @@
               </ul>
             </li>
           </ul>
-        </li>
+        </li> --}}
         <li class="pc-item">
           <a href="{{ url('/other/sample-page') }}" class="pc-link">
-            <span class="pc-micon"><i class="ti ti-brand-chrome"></i></span>
-            <span class="pc-mtext">Sample page</span>
+            <span class="pc-micon"><i class="ti ti-logout"></i></span>
+            <span class="pc-mtext">Logout</span>
           </a>
         </li>
       </ul>

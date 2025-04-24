@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengajuan_kredit', function (Blueprint $table) {
+        Schema::create('formnotas', function (Blueprint $table) {
             $table->id();
-            $table->string('nilai_kredit');
-            $table->string('jangka_pembayaran');
-            $table->string('bunga');
-            $table->string('jaminan');
             $table->timestamps();
-        });        
-        
+        });
     }
 
     /**
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengajuan_kredit');
+        Schema::dropIfExists('formnotas');
     }
 };
