@@ -3,18 +3,68 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 { 
 
     public function login()
     {
-        $pc_dark_layout = 'default'; // or 'true'/'false' based on your logic
-        $pc_box_container = 'false'; // or 'true'
-        $pc_rtl_layout = 'false'; // or 'true'
-        $pc_preset_theme = ''; // or any preset theme name
-        $font_name = ''; // or any font name
+        return view('auth.login');
+    }
 
-        return view('auth.login', compact('pc_dark_layout', 'pc_box_container', 'pc_rtl_layout', 'pc_preset_theme', 'font_name'));
+    public function RoleLogin(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Coba login   
+        if (Auth::attempt($request->only('email', 'password'))) {
+            // Cek peran pengguna
+            $user = Auth::user();
+            Log::info('Pengguna berhasil login', ['user' => $user]);
+
+            // Simpan role ke dalam sesi
+            session(['role' => $user->role]);
+            Log::info('Role disimpan dalam sesi', ['role' => $user->role]);
+
+            if ($user->role === 'admin') {
+                // Jika admin, redirect ke halaman admin
+                return redirect()->intended('admin/home');
+            } elseif ($user->role === 'bc') {
+                // Jika editor, redirect ke halaman editor
+                return redirect()->intended('/bc');
+            } elseif ($user->role === 'komite') {
+                // Jika viewer, redirect ke halaman viewer
+                return redirect()->intended('/home');
+            } else {
+                Log::warning('Peran pengguna tidak dikenali', ['role' => $user->role]);
+            }
+        } else {
+            Log::error('Autentikasi gagal', ['email' => $request->email]);
+        }
+
+        // Jika gagal, kembali ke halaman login dengan pesan kesalahan
+        return back()->withErrors([
+            'email' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
+        ]);
+    }
+
+    public function logout(Request $request) {
+        // Menghapus sesi pengguna
+        Auth::logout();
+
+        // Mengalihkan pengguna ke halaman login dengan pesan sukses
+        return redirect('/login')->with('success', 'Anda telah berhasil logout.');
+    }
+
+    // Untuk mengambil role dari sesi
+    public function someMethod() {
+        $role = session('role');
+        // Gunakan $role sesuai kebutuhan
     }
 }

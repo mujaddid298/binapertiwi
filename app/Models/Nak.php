@@ -10,11 +10,24 @@ class Nak extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'cabang', 'tanggal', 'nama_bc', 'perusahaan_pelanggan',
-        'pengajuan_kredit', 'karakter_perusahaan', 'kapital_perusahaan',
-        'kapasitas_perusahaan', 'kondisi_makro_lingkungan', 'lampiran',
-        'nilai_kredit_yang_disetujui', 'analisa_tim_kredit_ho', 'status',
-        'nilai_kredit', 'term_of_payment', 'bunga', 'jaminan'
+        'user_id', 
+        'cabang', 
+        'tanggal', 
+        'nama_bc', 
+        'perusahaan_pelanggan',
+        'pengajuan_kredit', 
+        'karakter_perusahaan', 
+        'kapital_perusahaan',
+        'kapasitas_perusahaan', 
+        'kondisi_makro_lingkungan', 
+        'lampiran',
+        'nilai_kredit_yang_disetujui',
+         'analisa_tim_kredit_ho', 
+         'status',
+        'nilai_kredit', 
+        'term_of_payment', 
+        'bunga', 
+        'jaminan'
     ];
 
     public function user()
@@ -24,6 +37,6 @@ class Nak extends Model
 
     public function persetujuan()
     {
-        return $this->hasMany(PersetujuanNak::class);
+        return $this->hasMany(Persetujuan::class);
     }
 }

@@ -8,7 +8,7 @@
     <meta name="description" content="Mantis is made using Bootstrap 5 design framework. Download the free admin template & use it for your project.">
     <meta name="keywords" content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
     <meta name="author" content="CodedThemes">
-    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/images/logo/bp_logosj.svg') }}" type="image/x-icon">
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
     <!-- [Tabler Icons] https://tablericons.com -->
@@ -25,7 +25,7 @@
 </head>
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
 
-    @include('layouts.partials.sidebar')
+    @include('layouts.sidebar')
 
     <!-- [ Main Content ] start -->
     <div class="pc-container">
@@ -35,7 +35,7 @@
     </div>
     <!-- [ Main Content ] end -->
 
-    @include('layouts.partials.footer')
+    @include('layouts.footer')
 
     <!-- Required Js -->
     <script src="{{ asset('assets/js/plugins/popper.min.js') }}"></script>

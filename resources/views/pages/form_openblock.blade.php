@@ -102,7 +102,7 @@
 
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary">Ajukan Pembukaan Block</button>
+                            <button type="submit" class="btn btn-green">Ajukan Pembukaan Block</button>
                             <button type="reset" class="btn btn-secondary ml-2">Reset</button>
                         </div>
                     </div>

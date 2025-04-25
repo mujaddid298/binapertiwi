@@ -13,16 +13,12 @@ return new class extends Migration
     {
         Schema::create('kapital_perusahaan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('fasilitas_id');
-
             $table->string('penjualan_perbulan');
             $table->string('penjualan_pertahun');
             $table->text('keterangan');
             $table->string('pembayaran');
-            $table->string('transaksi');
             $table->timestamps();
-
             $table->foreign('fasilitas_id')->references('id')->on('fasilitas')->onDelete('cascade');
 
         });

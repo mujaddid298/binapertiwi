@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('pengajuan_kredit', function (Blueprint $table) {
             $table->id();
-            $table->decimal('jumlah_kredit', 15, 2);
-            $table->string('syarat_pembayaran');
-            $table->decimal('persen_bunga', 5, 2);
-            $table->text('deskripsi_jaminan');
+            $table->string('nilai_kredit');
+            $table->string('jangka_pembayaran');
+            $table->string('bunga');
+            $table->string('jaminan');
             $table->timestamps();
         });        
         

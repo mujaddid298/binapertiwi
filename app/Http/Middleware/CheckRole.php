@@ -17,14 +17,11 @@ class CheckRole
      * @param  string  $role
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $role): Response
+    public function handle(Request $request, Closure $next, ...$role): Response
     {
-        if (!Auth::check()) {
-            return redirect('/login'); // Ganti dengan rute login Anda
-        }
-        // Periksa apakah pengguna memiliki peran yang sesuai
-        if (Auth::user()->role !== $role) {
-            return redirect('/'); // Ganti dengan rute yang sesuai jika akses ditolak
+        // Cek jika pengguna tidak memiliki role
+        if (!$request->user() || !in_array($request->user()->role, $role)) {
+            return redirect()->route('login');
         }
 
         return $next($request);

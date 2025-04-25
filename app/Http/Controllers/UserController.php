@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Persetujuan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -76,5 +77,4 @@ class UserController extends Controller
     {
         return view('pages.form_openblock');
     }
- 
 }

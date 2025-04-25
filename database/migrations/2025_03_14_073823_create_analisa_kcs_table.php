@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('analisa_kcs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('nak_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
             $table->string('jabatan');
             $table->text('komentar')->nullable();
             $table->timestamps();

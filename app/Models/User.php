@@ -21,6 +21,6 @@ class User extends Authenticatable
 
     public function persetujuan()
     {
-        return $this->hasMany(PersetujuanNak::class, 'komite_id');
+        return $this->hasMany(Persetujuan::class, 'komite_id');
     }
 }

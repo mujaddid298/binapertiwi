@@ -9,7 +9,7 @@
   <div class="navbar-wrapper">
     <div class="m-header">
       <a href="{{ url('/dashboard') }}" class="b-brand">
-        <img src="{{ asset('assets/images/logo-dark.svg') }}" class="img-fluid logo-lg" alt="logo">
+        <img src="{{ asset('assets/images/logo/bp.png') }}" width="150" class="mt-2 img-fluid logo-lg" alt="logo">
       </a>
     </div>
     <div class="navbar-content">

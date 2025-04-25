@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('hubungan_banks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kapasitas_perusahaan_id')->constrained()->onDelete('cascade');
             $table->string('nama_lembaga');
             $table->text('deskripsi');
             $table->timestamps();
