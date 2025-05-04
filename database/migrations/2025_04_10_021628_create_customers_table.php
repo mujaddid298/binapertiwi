@@ -20,9 +20,8 @@ return new class extends Migration
             $table->string('group_perusahaan');
             $table->string('penanggung_jawab');
             $table->string('status');
-
-            $table->foreignId('kapital_perusahaan_id')->nullable()->constrained('kapital_perusahaan');
-            $table->foreignId('kapasitas_perusahaan_id')->nullable()->constrained('kapasitas_perusahaan');
+            
+            $table->foreignId('nak_id')->nullable()->constrained('naks');
             $table->timestamps();
         });
     }

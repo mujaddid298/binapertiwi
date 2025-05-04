@@ -145,7 +145,6 @@ class NotaController extends Controller
      */
     public function storePersetujuan3(Request $request)
     {
-        // Validate the incoming request data
         $validatedData = $request->validate([
             'nama_bc' => 'required|string|max:255',
             'cabang' => 'required|string|max:255',
@@ -177,79 +176,82 @@ class NotaController extends Controller
             'cara_pembayaran' => 'required|string',
             'jenis_pembayaran' => 'required|string',
             'nama_proyek' => 'nullable|string|max:255',
-            'nama_fasilitas' => 'array',
-            'jumlah_fasilitas' => 'array',
-            'keterangan_fasilitas' => 'array',
-            // Add other fields as necessary
+            'nama_fasilitas.*' => 'nullable|string',
+            'jumlah_fasilitas.*' => 'nullable|numeric',
+            'keterangan_fasilitas.*' => 'nullable|string',
         ]);
-
+    
         try {
+            DB::beginTransaction();
+    
             $nota = Nak::create([
                 'tanggal' => $validatedData['tanggal'],
                 'cabang' => $validatedData['cabang'],
                 'nama_bc' => $validatedData['nama_bc'],
             ]);
+    
             $customer = Customer::create([
-                'nota_id' => $nota->id,
-                'namacust' => $validatedData['namacust'],
+                'nak_id' => $nota->id,
+                'nama' => $validatedData['namacust'],
                 'bidang_usaha' => $validatedData['bid-usaha'],
                 'group' => $validatedData['group'],
                 'penanggung_jawab' => $validatedData['penanggung_jawab'],
                 'alamat' => $validatedData['alamat'],
-                'industry' => $validatedData['industry'],
+                'industry' => json_encode($validatedData['industry']),
             ]);
-
-            $kapital_perusahaan = KapitalPerusahaan::create([
+    
+            KapitalPerusahaan::create([
                 'customer_id' => $customer->id,
-                'rata_rata_per_bulan' => $validatedData['rata_rata_per_bulan'],
-                'jumlah_hasil_penjualan_per_tahun' => $validatedData['jumlah_hasil_penjualan_per_tahun'],
+                'penjualan_perbulan' => $validatedData['rata_rata_per_bulan'],
+                'penjualan_pertahun' => $validatedData['jumlah_hasil_penjualan_per_tahun'],
                 'cara_pembayaran' => $validatedData['cara_pembayaran'],
                 'jenis_pembayaran' => $validatedData['jenis_pembayaran'],
             ]);
-
-            $detail_perusahaan = DetailPerusahaan::create([
+    
+            DetailPerusahaan::create([
                 'customer_id' => $customer->id,
-                'keuangan_perusahaan_id' => $customer->id,
-                'bentuk_perusahaan' => $validatedData['bentuk_perusahaan'],
+                'bentuk_perusahaan' => json_encode($validatedData['bentuk_perusahaan']),
                 'waktu_didirikan' => $validatedData['waktu_didirikan'],
                 'domisili' => $validatedData['domisili'],
-                'nomor_akte_pendirian' => $validatedData['nomor_akte_pendirian'],
+                'nomor_akte' => $validatedData['nomor_akte_pendirian'],
                 'notaris' => $validatedData['notaris'],
                 'akte_perubahan' => $validatedData['akte_perubahan'],
                 'pengesahan' => $validatedData['pengesahan'],
                 'modal_dasar' => $validatedData['modal_dasar'],
                 'modal_disetor' => $validatedData['modal_disetor'],
-                'lama' => $validatedData['lama'],
+                'umur_perusahaan' => $validatedData['lama'],
                 'struktur' => $validatedData['struktur'],
-                'pemegang_keputusan' => $validatedData['pemegang_keputusan'],
+                'pemegang_keputusan' => $validatedData['pemegang_keputusan'] ?? null,
             ]);
 
-            $pengajuan_kredit = PengajuanKredit::create([
-                'nilai_kredit' => $validatedData['nilai_kredit'],
+            PengajuanKredit::create([
+                'customer_id' => $customer->id,
+                'nilai_kredit' => $validatedData['nilai_kredit'],   
                 'jangka_pembayaran' => $validatedData['jangka_pembayaran'],
                 'bunga' => $validatedData['bunga'],
                 'jaminan' => $validatedData['jaminan'],
             ]);
-
+    
+            if (!empty($validatedData['nama_fasilitas'])) {
+                foreach ($validatedData['nama_fasilitas'] as $index => $nama) {
+                    if ($nama) {
+                        Fasilitas::create([
+                            'nota_id' => $nota->id,
+                            'nama_fasilitas' => $nama,
+                            'jumlah_fasilitas' => $validatedData['jumlah_fasilitas'][$index] ?? null,
+                            'keterangan_fasilitas' => $validatedData['keterangan_fasilitas'][$index] ?? null,
+                        ]);
+                    }
+                }
+            }
+    
+            DB::commit();
+            return redirect()->route('admin.someRoute')->with('success', 'Data berhasil disimpan.');
+    
         } catch (\Exception $e) {
-            // Handle the exception (e.g., log the error, return a response)
+            DB::rollBack();
             return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan data: ' . $e->getMessage());
         }
-        // Store facilities if they exist
-        if (!empty($validatedData['nama_fasilitas'])) {
-            foreach ($validatedData['nama_fasilitas'] as $index => $nama_fasilitas) {
-                // Assuming you have a model for facilities, e.g., Facility
-                // You may need to create a Facility model and migration if it doesn't exist
-                Fasilitas::create([
-                    'nota_id' => $nota->id, // Assuming you have a foreign key in the facilities table
-                    'nama_fasilitas' => $nama_fasilitas,
-                    'jumlah_fasilitas' => $validatedData['jumlah_fasilitas'][$index] ?? null,
-                    'keterangan_fasilitas' => $validatedData['keterangan_fasilitas'][$index] ?? null,
-                ]);
-            }
-        }
-
-        // Redirect or return response
-        return redirect()->route('admin.someRoute')->with('success', 'Data has been saved successfully.');
     }
+    
 } 

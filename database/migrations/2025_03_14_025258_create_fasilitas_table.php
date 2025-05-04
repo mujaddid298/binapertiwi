@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('fasilitas', function (Blueprint $table) {
-            $table->id(); 
+            $table->id();
+            $table->foreign('kapital_perusahaan_id')->references('id')->on('kapital_perusahaan')->onDelete('cascade');
             $table->string('fasilitas');
             $table->string('jumlah');
             $table->text('keterangan');

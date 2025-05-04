@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('detail_perusahaans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('keuangan_perusahaan_id')->constrained('keuangan_perusahaans')->onDelete('cascade'); 
+            $table->foreignId('customer_id')->references('id')->on('customers')->onDelete('cascade'); 
             $table->string('bentuk_perusahaan');
             $table->date('waktu_didirikan');
             $table->string('akte_perubahan');
