@@ -13,24 +13,21 @@ return new class extends Migration
     {
         Schema::create('naks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('pengajuan_kredit_id')->constrained('pengajuan_kredit')->onDelete('cascade');
-            $table->foreignId('persetujuan_nak_id')->constrained('persetujuan_nak')->onDelete('cascade');
-            $table->foreignId('analisa_kc_id')->constrained('analisa_kcs')->onDelete('cascade');
-            $table->foreignId('analisa_kh_id')->constrained('analisa_khs')->onDelete('cascade');
+            $table->foreignId('customer_id')->nullable()->constrained('customers')->onDelete('set null');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('persetujuan_nak_id')->nullable()->constrained('persetujuan_nak')->nullOnDelete();
 
             $table->string('cabang');
             $table->date('tanggal');
             $table->string('nama_bc');
-            $table->string('komentar');
+            $table->text('komentar')->nullable();
 
-            $table->text('makro_lingkungan');
+            $table->text('makro_lingkungan')->nullable();
             $table->text('lampiran')->nullable();
             $table->decimal('nilai_kredit', 15, 2)->nullable();
-            $table->string('term_of_payment');
-            $table->string('bunga');
-            $table->string('jaminan');
+            $table->string('term_of_payment')->nullable();
+            $table->string('bunga')->nullable();
+            $table->string('jaminan')->nullable();
 
             $table->text('analisa_tim_kredit')->nullable();
 
