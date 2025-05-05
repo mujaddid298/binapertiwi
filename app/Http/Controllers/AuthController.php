@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
-{ 
+{
 
     public function login()
     {
@@ -37,7 +37,7 @@ class AuthController extends Controller
                 return redirect()->intended('admin/home');
             } elseif ($user->role === 'bc') {
                 // Jika editor, redirect ke halaman editor
-                return redirect()->intended('/bc');
+                return redirect()->intended('bc/home');
             } elseif ($user->role === 'komite') {
                 // Jika viewer, redirect ke halaman viewer
                 return redirect()->intended('/home');
@@ -54,7 +54,8 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         // Menghapus sesi pengguna
         Auth::logout();
 
@@ -63,7 +64,8 @@ class AuthController extends Controller
     }
 
     // Untuk mengambil role dari sesi
-    public function someMethod() {
+    public function someMethod()
+    {
         $role = session('role');
         // Gunakan $role sesuai kebutuhan
     }

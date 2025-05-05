@@ -8,48 +8,48 @@ use App\Models\Customer;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CustomerImport; 
 
-class AdminController extends Controller
+class BcController extends Controller
 {
     public function home()
     { 
-        return view('pages.admin.home');
+        return view('pages.bc.home');
     }
     public function formnak()
-    { 
-        return view('pages.admin.form_nak');
+    {  
+        return view('pages.bc.form_nak');
     }
     public function openblock()
     { 
-        return view('pages.admin.form_openblock');
+        return view('pages.bc.form_openblock');
     }
     public function level1()
     { 
-        return view('pages.admin.level1');
+        return view('pages.bc.level1');
     }
     public function level3()
     { 
-        return view('pages.admin.level3');
+        return view('pages.bc.level3');
     }
 
     public function persetujuan3()
     { 
-        return view('pages.admin.persetujuan3');
+        return view('pages.bc.persetujuan3');
     }
 
     public function detail()
     { 
-        return view('pages.admin.detail');
+        return view('pages.bc.detail');
     }
 
     public function datacustomer()
     {
         $customers = Customer::all();
-        return view('pages.admin.datacustomer', compact('customers'));
+        return view('pages.bc.datacustomer', compact('customers'));
     }
 
     public function daftaruser(){
         $users = User::all(); // Mengambil semua data pengguna
-        return view('pages.admin.daftaruser', compact('users')); // Mengirim data ke view
+        return view('pages.bc.daftaruser', compact('users')); // Mengirim data ke view
     }
 
     public function uploadExcel(Request $request)
