@@ -10,14 +10,17 @@ class DetailPerusahaan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'keuangan_perusahaan_id',
+        'customers_id',
         'bentuk_perusahaan',
         'waktu_didirikan',
         'akte_perubahan',
         'pengesahan',
         'manajemen_kehakiman',
         'domisili',
+        'modal_dasar',
+        'modal_disetor',
         'notaris',
+        'nomer_akte',
         'umur_perusahaan',
         'struktur_organisasi',
     ];

@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PersetujuanNakController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\NotaController;
 use App\Http\Middleware\CheckRole; 
 
@@ -26,13 +27,29 @@ Route::middleware([CheckRole::class . ':admin'])->group(function () {
     Route::get('/admin/detail', [AdminController::class, 'detail'])->name('admin.detail');
     Route::get('/admin/form_nak', [AdminController::class, 'formnak'])->name('admin.formnak');
     Route::post('/store-nak', [NotaController::class, 'storeformnak'])->name('admin.storeformnak');
-    
-    
+
+
     Route::get('admin/form_openblock', [AdminController::class, 'openblock'])->name('admin.form_openblock');
     Route::get('admin/level1', [AdminController::class, 'level1'])->name('admin.level1');
     Route::get('admin/level3', [AdminController::class, 'level3'])->name('admin.level3');
+
+
+
+
+    // Add this line in routes/web.php
+    Route::get('/admin/form', [FormController::class, 'showForm'])->name('admin.form');
+    Route::post('/admin/form/store', [FormController::class, 'store'])->name('admin.form.store');
+
+
+
+
+
+
+
+
     //halaman tingkatan
     Route::get('admin/persetujuan3', [AdminController::class, 'persetujuan3'])->name('admin.persetujuan3');
+
 
 });
 

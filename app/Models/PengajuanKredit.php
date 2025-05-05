@@ -10,9 +10,10 @@ class PengajuanKredit extends Model
 
     protected $fillable = [
         'nilai_kredit',
-        'jangka_pembayaran',
+        'term_of_payment',
         'bunga',
-        'jaminan'
+        'jaminan',
+        'nak_id'
     ];
 
     protected $casts = [

@@ -15,5 +15,6 @@ class Customer extends Model
         'penanggung_jawab',
         'kapital_perusahaan_id',
         'kapasitas_perusahaan_id',
+        'nak_id',
     ];
 }

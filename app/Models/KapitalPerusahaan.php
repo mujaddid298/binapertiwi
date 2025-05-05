@@ -14,11 +14,12 @@ class KapitalPerusahaan extends Model
 
     // Kolom yang dapat diisi secara massal
     protected $fillable = [
-        'fasilitas_id',
+        'customers_id',
         'penjualan_perbulan',
         'penjualan_pertahun',
         'keterangan',
-        'pembayaran',
+        'cara_pembayaran',
+        'jenis_pembayaran', 
     ];
 
     // Relasi dengan model Customer

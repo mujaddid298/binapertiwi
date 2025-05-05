@@ -11,12 +11,11 @@ class KeuanganPerusahaan extends Model
 
     protected $table = 'keuangan_perusahaans';
 
-    protected $fillable = [
-        'modal_dasar',
-        'modal_disetor',
+    protected $fillable = [ 
         'nama',
         'jabatan',
         'saham',
         'nilai_saham',
+        'detail_perusahaan_id',
     ];
 }
