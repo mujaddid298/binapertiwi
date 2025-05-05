@@ -12,7 +12,7 @@ class Meeting extends Model
     protected $fillable = [
         'judul',
         'tanggal',
-        'deskripsi',
+        'link',
         'status',
     ];
 }

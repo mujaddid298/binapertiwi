@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-        public function home()
-        {
-            return view('pages.home');
-        }
+    public function home()
+    {
+        return view('pages.home');
+    }
 
     public function formnak()
     {
@@ -77,5 +77,4 @@ class UserController extends Controller
     {
         return view('pages.form_openblock');
     }
-
 }

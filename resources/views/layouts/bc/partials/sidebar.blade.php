@@ -9,7 +9,7 @@
 <nav class="pc-sidebar">
     <div class="navbar-wrapper">
         <div class="m-header">
-            <a href="{{ route('admin.home') }}" class="b-brand">
+            <a href="{{ route('bc.home') }}" class="b-brand">
                 <img src="{{ asset('assets/images/logo/bp.png') }}" width="150" class="mt-2 img-fluid logo-lg"
                     alt="logo">
             </a>
@@ -17,7 +17,7 @@
         <div class="navbar-content">
             <ul class="pc-navbar">
                 <li class="pc-item">
-                    <a href="{{ route('admin.home') }}" class="pc-link">
+                    <a href="{{ route('bc.home') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
                         <span class="pc-mtext">Dashboard</span>
                     </a>
@@ -27,19 +27,19 @@
           <i class="ti ti-dashboard"></i>
         </li> --}}
                 <li class="pc-item">
-                    <a href="{{ route('admin.daftaruser') }}" class="pc-link">
+                    <a href="{{ route('bc.daftaruser') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-users"></i></span>
                         <span class="pc-mtext">Daftar Pengguna</span>
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="{{ route('admin.datacustomer') }}" class="pc-link">
+                    <a href="{{ route('bc.datacustomer') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-notes"></i></span>
                         <span class="pc-mtext">Data Customer</span>
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="{{ route('admin.meeting.index') }}" class="pc-link">
+                    <a href="{{ route('bc.meeting.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-calendar-event"></i></span>
                         <span class="pc-mtext">Meeting</span>
                     </a>
@@ -116,4 +116,4 @@
 </nav>
 <!-- [ Sidebar Menu ] end -->
 <!-- [ Header ]-->
-@include('layouts.admin.partials.header')
+@include('layouts.bc.partials.header')

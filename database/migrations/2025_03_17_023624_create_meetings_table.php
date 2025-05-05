@@ -10,8 +10,8 @@ return new class extends Migration {
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->date('tanggal');
-            $table->text('deskripsi');
+            $table->datetime('tanggal');
+            $table->string('link');
             $table->string('status');
             $table->timestamps();
         });
