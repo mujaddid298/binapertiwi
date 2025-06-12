@@ -27,7 +27,7 @@
                 <h4 class="text-center fw-bold">FORM NOTA APLIKASI KREDIT </h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.form.store') }}" method="POST">
+                <form action="{{ route('admin.form.storeTingkat3') }}" method="POST">
                     @csrf
                     {{-- <!-- Error Messages -->
                     @if ($errors->any())
@@ -576,7 +576,7 @@
                     </div>
                     <!-- Submit Button -->
                     <div class="form-group text-center mt-4">
-                        <button type="submit" class="btn btn-green">Submit</button>
+                        <button type="submit" class="btn btn-green">Ajukan Kredit</button>
                     </div>
                 </form>
             </div>

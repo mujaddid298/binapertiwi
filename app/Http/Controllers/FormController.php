@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AgingAr;
 use App\Models\Nak;
 use Illuminate\Http\Request;
 use App\Models\YourModel; // Ensure your model has the fillable properties set
@@ -14,12 +15,18 @@ use App\Models\Fasilitas;
 
 class FormController extends Controller
 {
-    public function showForm()
+    public function formTingkat3()
     {
         return view('pages.admin.tingkat3'); // Replace with your actual view name
     }
 
-    public function store(Request $request)
+    public function formTingkat2()
+    {
+        return view('pages.admin.tingkat2'); // Replace with your actual view name
+    }
+
+
+    public function storeTingkat3(Request $request)
     {
         //dd ( $request->all());
         $validated = $request->validate([
@@ -89,6 +96,9 @@ class FormController extends Controller
             'keterangan_fasilitas.*.required' => 'Keterangan fasilitas wajib diisi.',
         ]);
 
+        // Tambahkan field level ke dalam array validated
+        $validated['level'] = 'level 3';
+
         // Simpan ke tabel Nak
         $nak = Nak::create($validated);
 
@@ -105,15 +115,15 @@ class FormController extends Controller
         $customer = Customer::create($customerData);
 
         // Simpan ke tabel PengajuanKredit
-        $pengajuanKreditData = [
-            'customer_id' => $customer->id,
+        $agingArData = [
+            'customers_id' => $customer->id,
             'nilai_kredit' => $validated['nilai_kredit'],
             'term_of_payment' => $validated['term_of_payment'],
             'bunga' => $validated['bunga'],
             'jaminan' => $validated['jaminan'],
             'nak_id' => $nak->id,
         ];
-        $pengajuanKredit = PengajuanKredit::create($pengajuanKreditData);
+        $agingAr = AgingAr::create($agingArData);
 
         // Simpan ke tabel DetailPerusahaan
         $pemegang_keputusan = $request->pemegang_keputusan;
@@ -185,13 +195,21 @@ class FormController extends Controller
             if ($nama || $request->jumlah_fasilitas[$i] || $request->keterangan_fasilitas[$i] ?? null) {
                 Fasilitas::create([
                     'kapital_perusahaan_id' => $kapital->id,
-                    'fasilitas' => $nama,
+                    'f\asilitas' => $nama,
                     'jumlah' => $request->jumlah_fasilitas[$i],
                     'keterangan' => $request->keterangan_fasilitas[$i],
                 ]);
             }
         }
 
-        return redirect()->route('admin.form')->with('success', 'Form submitted successfully!');
+        return redirect()->route('admin.formTingkat3')->with('success', 'Form submitted successfully!');
     }
+
+
+    public function storeTingkat2(Request $request)
+    {
+
+
+    }
+
 }

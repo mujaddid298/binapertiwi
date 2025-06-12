@@ -10,6 +10,8 @@ use App\Http\Controllers\NotaController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\BcController;
+use App\Http\Controllers\OpenblokController;
+use App\Http\Controllers\KomiteController;
 use App\Http\Middleware\CheckRole;
 
 // Public routes
@@ -21,17 +23,30 @@ Route::post('/role-login', [AuthController::class, 'RoleLogin'])->name('role.log
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 // Group routes that require the 'admin' role
-Route::middleware([CheckRole::class . ':admin'])->group(function () {
+Route::middleware(['auth', CheckRole::class . ':admin'])->group(function () {
     Route::get('/admin/home', [AdminController::class, 'home'])->name('admin.home');
     Route::get('/admin/daftaruser', [AdminController::class, 'daftaruser'])->name('admin.daftaruser');
+    
+    Route::get('/admin/daftaruser/create', [AdminController::class, 'createUser'])->name('admin.daftaruser.tambah');
+    Route::post('/admin/daftaruser/store', [AdminController::class, 'storeUser'])->name('admin.daftaruser.store');
+    Route::get('/admin/daftaruser/{id}/edit', [AdminController::class, 'editUser'])->name('admin.daftaruser.edit');
+    Route::post('/admin/daftaruser/{id}/update', [AdminController::class, 'updateUser'])->name('admin.daftaruser.update');
+    
     Route::get('/admin/datacustomer', [AdminController::class, 'datacustomer'])->name('admin.datacustomer');
     Route::post('/admin/upload-excel', [AdminController::class, 'uploadExcel'])->name('admin.uploadExcel');
-    Route::get('/admin/detail', [AdminController::class, 'detail'])->name('admin.detail');
+    
+    
+    Route::get('/admin/detail/{id}', [AdminController::class, 'detail'])->name('admin.detail');
+    
+    
     Route::get('/admin/form_nak', [AdminController::class, 'formnak'])->name('admin.formnak');
     Route::post('/store-nak', [NotaController::class, 'storeformnak'])->name('admin.storeformnak');
 
+    
 
-    Route::get('admin/form_openblock', [AdminController::class, 'openblock'])->name('admin.form_openblock');
+    Route::get('admin/form_openblock/{id}', [OpenblokController::class, 'index'])->name('admin.form_openblock');
+
+
     Route::get('admin/level1', [AdminController::class, 'level1'])->name('admin.level1');
     Route::get('admin/level3', [AdminController::class, 'level3'])->name('admin.level3');
 
@@ -39,18 +54,31 @@ Route::middleware([CheckRole::class . ':admin'])->group(function () {
 
 
     // Add this line in routes/web.php
-    Route::get('/admin/form', [FormController::class, 'showForm'])->name('admin.form');
-    Route::post('/admin/form/store', [FormController::class, 'store'])->name('admin.form.store');
+    Route::get('/admin/formTingkat3', [FormController::class, 'formTingkat3'])->name('admin.formTingkat3');
+    Route::post('/admin/form/storeTingkat3', [FormController::class, 'storeTingkat3'])->name('admin.form.storeTingkat3');
+
+    Route::get('/admin/formTingkat2', [FormController::class, 'formTingkat2'])->name('admin.formTingkat2');
+    Route::post('/admin/form/storeTingkat2', [FormController::class, 'storeTingkat2'])->name('admin.form.storeTingkat2');
 
 
 
-
-
-
+    Route::get('admin/meeting', [MeetingController::class, 'index'])->name('admin.meeting.index');
+    Route::get('admin/meeting/create', [MeetingController::class, 'create'])->name('admin.meeting.create');
+    Route::post('admin/meeting', [MeetingController::class, 'store'])->name('admin.meeting.store');
+    Route::get('admin/meeting/{id}/edit', [MeetingController::class, 'edit'])->name('admin.meeting.edit');
+    Route::put('admin/meeting/{id}', [MeetingController::class, 'update'])->name('admin.meeting.update');
+    Route::delete('admin/meeting/{id}', [MeetingController::class, 'destroy'])->name('admin.meeting.destroy');
+    Route::get('admin/meeting/{id}', [MeetingController::class, 'show'])->name('admin.meeting.show');
+    
+    
+    
+    Route::post('/form_openblock', [OpenblokController::class, 'store'])->name('openblok.store');
 
 
     //halaman tingkatan
     Route::get('admin/persetujuan3', [AdminController::class, 'persetujuan3'])->name('admin.persetujuan3');
+
+    Route::get('/admin/getBlocksByMonth', [OpenblokController::class, 'getBlocksByMonth'])->name('admin.getBlocksByMonth');
 
 });
 
@@ -81,6 +109,7 @@ Route::get('/form_openblock', [userController::class, 'openblock'])->name('pages
 Route::post('/role-login', [AuthController::class, 'RoleLogin'])->name('role.login');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
+
 // Group routes that require the 'bc' role
 Route::middleware([CheckRole::class . ':bc'])->group(function () {
     Route::get('/bc/home', [BcController::class, 'home'])->name('bc.home');
@@ -103,4 +132,53 @@ Route::middleware([CheckRole::class . ':bc'])->group(function () {
     Route::put('bc/meeting/{id}', [MeetingController::class, 'updatebc'])->name('bc.meeting.update');
     Route::delete('bc/meeting/{id}', [MeetingController::class, 'destroybc'])->name('bc.meeting.destroy');
     Route::get('bc/meeting/{id}', [MeetingController::class, 'showbc'])->name('bc.meeting.show');
+
+    
+    Route::get('/customer/{id}', [KomiteController::class, 'getCustomer'])->name('getCustomer');
+    
+
+    Route::get('/bc/profile', [BcController::class, 'profile'])->name('bc.profile.profile');
+    Route::get('/bc/editprofile', [BcController::class, 'editprofile'])->name('bc.profile.editprofile');
+    Route::put('/bc/update-profile', [BcController::class, 'updateProfile'])->name('bc.updateProfile');
 });
+
+
+// Route for role login accessible to all users
+Route::post('/role-login', [AuthController::class, 'RoleLogin'])->name('role.login');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+
+// Group routes that require the 'user' role
+Route::middleware([CheckRole::class . ':komite'])->group(function () {
+    Route::get('/komite/home', [KomiteController::class, 'home'])->name('komite.home');
+    Route::get('/komite/datacustomer', [KomiteController::class, 'datacustomer'])->name('komite.datacustomer');
+    Route::get('/komite/detail', [KomiteController::class, 'detail'])->name('komite.detail');
+    Route::get('/komite/form_nak', [KomiteController::class, 'formnak'])->name('komite.formnak');
+    Route::get('/komite/form_openblock', [KomiteController::class, 'openblock'])->name('komite.form_openblock');
+    Route::get('/komite/level1', [KomiteController::class, 'level1'])->name('komite.level1');
+    Route::get('/komite/level3', [KomiteController::class, 'level3'])->name('komite.level3');
+    Route::get('/komite/persetujuan3', [KomiteController::class, 'persetujuan3'])->name('komite.persetujuan3');
+    Route::post('/komite/upload-excel', [KomiteController::class, 'uploadExcel'])->name('komite.uploadExcel');
+    Route::post('/store-nak', [NotaController::class, 'storeformnak'])->name('komite.storeformnak');
+
+    // Meeting routes
+    //Route::get('komite/meeting', [MeetingController::class, 'indexbc'])->name('komite.meeting.index');
+    Route::get('komite/meeting/create', [MeetingController::class, 'createbc'])->name('komite.meeting.create');
+    Route::post('komite/meeting', [MeetingController::class, 'storebc'])->name('komite.meeting.store');
+    Route::get('komite/meeting/{id}/edit', [MeetingController::class, 'editbc'])->name('komite.meeting.edit');
+    Route::put('komite/meeting/{id}', [MeetingController::class, 'updatebc'])->name('komite.meeting.update');
+    Route::delete('komite/meeting/{id}', [MeetingController::class, 'destroybc'])->name('komite.meeting.destroy');
+    Route::get('komite/meeting/{id}', [MeetingController::class, 'showbc'])->name('komite.meeting.show');
+
+    Route::get('/komite/meetings', [MeetingController::class, 'indexKomite'])->name('komite.meeting.index');
+
+    Route::get('/komite/profile', [KomiteController::class, 'profile'])->name('komite.profile.profile');
+    Route::get('/komite/editprofile', [KomiteController::class, 'editprofile'])->name('komite.profile.editprofile');
+    Route::put('/komite/update-profile', [KomiteController::class, 'updateProfile'])->name('komite.updateProfile');
+
+
+
+
+    Route::get('/approve/{id}', [OpenblokController::class, 'approve'])->name('approve');
+    Route::post('openblock/{id}', [OpenblokController::class, 'storeapprove'])->name('openblock.approval');
+});
+// Openblok routes

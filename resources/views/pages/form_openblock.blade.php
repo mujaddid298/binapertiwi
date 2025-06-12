@@ -28,7 +28,7 @@
                 <h5>Form Permohonan Pembukaan Block</h5>
             </div>
             <div class="card-body">
-                <form action="#" method="POST">
+                <form action="{{ route('openblok.store') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">

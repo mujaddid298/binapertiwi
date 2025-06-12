@@ -27,7 +27,7 @@
             <div class="card-header">
                 <h5>Daftar Meeting</h5>
                 <div class="card-header-right">
-                    <a href="{{ route('admin.meeting.create') }}" class="btn btn-primary btn-sm">Tambah Meeting</a>
+                    <a href="{{ route('admin.meeting.create') }}" class="btn btn-green">Tambah Meeting</a>
                 </div>
             </div>
             <div class="card-body">
@@ -38,7 +38,7 @@
                 @endif
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
+                    <table class="table ">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -67,7 +67,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.meeting.edit', $meeting->id) }}"
-                                        class="btn btn-sm btn-warning">Edit</a>
+                                        class="btn btn-green">Edit</a>
                                     <form action="{{ route('admin.meeting.destroy', $meeting->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf

@@ -63,55 +63,29 @@
           <div class="dropdown-divider"></div>
           <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative" style="max-height: calc(100vh - 215px)">
             <div class="list-group list-group-flush w-100">
-              <a class="list-group-item list-group-item-action">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
-                  </div>
-                  <div class="flex-grow-1 ms-1">
-                    <span class="float-end text-muted">3:00 AM</span>
-                    <p class="text-body mb-1">It's <b>Cristina danny's</b> birthday today.</p>
-                    <span class="text-muted">2 min ago</span>
-                  </div>
-                </div>
-              </a>
-              <a class="list-group-item list-group-item-action">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <img src="../assets/images/user/avatar-1.jpg" alt="user-image" class="user-avtar">
-                  </div>
-                  <div class="flex-grow-1 ms-1">
-                    <span class="float-end text-muted">6:00 PM</span>
-                    <p class="text-body mb-1"><b>Aida Burg</b> commented your post.</p>
-                    <span class="text-muted">5 August</span>
-                  </div>
-                </div>
-              </a>
-              <a class="list-group-item list-group-item-action">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <img src="../assets/images/user/avatar-3.jpg" alt="user-image" class="user-avtar">
-                  </div>
-                  <div class="flex-grow-1 ms-1">
-                    <span class="float-end text-muted">2:45 PM</span>
-                    <p class="text-body mb-1"><b>There was a failure to your setup.</b></p>
-                    <span class="text-muted">7 hours ago</span>
-                  </div>
-                </div>
-              </a>
-              <a class="list-group-item list-group-item-action">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <img src="../assets/images/user/avatar-4.jpg" alt="user-image" class="user-avtar">
-                  </div>
-                  <div class="flex-grow-1 ms-1">
-                    <span class="float-end text-muted">9:10 PM</span>
-                    <p class="text-body mb-1"><b>Cristina Danny </b> invited to join <b> Meeting.</b></p>
-                    <span class="text-muted">Daily scrum meeting time</span>
-                  </div>
-                </div>
-              </a>
-            </div>
+              @forelse($notifications as $notif)
+                  <a class="list-group-item list-group-item-action" href="{{ $notif['link'] ?? '#' }}">
+                      <div class="d-flex">
+                          <div class="flex-shrink-0">
+                              @if($notif['type'] == 'openblock')
+                                  <img src="{{ asset('assets/images/user/avatar-2.jpg') }}" alt="user-image" class="user-avtar">
+                              @else
+                                  <img src="{{ asset('assets/images/user/avatar-4.jpg') }}" alt="user-image" class="user-avtar">
+                              @endif
+                          </div>
+                          <div class="flex-grow-1 ms-1">
+                              <span class="float-end text-muted">
+                                  {{ \Carbon\Carbon::parse($notif['time'])->diffForHumans() }}
+                              </span>
+                              <p class="text-body mb-1">{!! $notif['message'] !!}</p>
+                              <span class="text-muted">{{ $notif['title'] }}</span>
+                          </div>
+                      </div>
+                  </a>
+              @empty
+                  <div class="text-center text-muted py-3">Tidak ada notifikasi</div>
+              @endforelse
+          </div>
           </div>
           <div class="dropdown-divider"></div>
           <div class="text-center py-2">

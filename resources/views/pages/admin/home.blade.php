@@ -72,7 +72,7 @@
             </div>
 
             <div class=" text-right">
-                <a href="{{ route('admin.persetujuan3') }}" class="btn btn-green mr-1 btn-a" style="float: left;">Tambah
+                <a href="{{ route('admin.formTingkat3') }}" class="btn btn-green mr-1 btn-a" style="float: left;">Tambah
                     Nota Kredit</a>
             </div>
 

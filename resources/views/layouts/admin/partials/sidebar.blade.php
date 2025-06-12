@@ -22,6 +22,7 @@
                         <span class="pc-mtext">Dashboard</span>
                     </a>
                 </li>
+          
                 {{-- <li class="pc-item pc-caption">
           <label style="color: white;"></label>
           <i class="ti ti-dashboard"></i>
@@ -38,6 +39,12 @@
                         <span class="pc-mtext">Data Customer</span>
                     </a>
                 </li>
+                {{-- <li class="pc-item">
+                    <a href="{{ route('admin.home') }}" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-notes"></i></span>
+                        <span class="pc-mtext">Document Open Block</span>
+                    </a>
+                </li> --}}
                 <li class="pc-item">
                     <a href="{{ route('admin.meeting.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-calendar-event"></i></span>
@@ -90,7 +97,7 @@
           </ul>
         </li> --}}
                 <li class="pc-item">
-                    <a href="{{ url('/other/sample-page') }}" class="pc-link">
+                    <a href="{{ route('logout') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-logout"></i></span>
                         <span class="pc-mtext">Logout</span>
                     </a>

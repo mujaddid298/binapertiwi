@@ -1,274 +1,257 @@
- @extends('layouts.bc.app_admin')
+@extends('layouts.bc.app')
 
- @section('title', 'Home')
+@section('title', 'Home')
 
- @section('content')
- <!-- [ breadcrumb ] start -->
- <div class="page-header">
-     <div class="page-block">
-         <div class="row align-items-center">
-             <div class="col-md-12">
-                 <div class="page-header-title">
-                     <h5 class="m-b-10">Home</h5>
-                 </div>
-                 <ul class="breadcrumb">
-                     <li class="breadcrumb-item"><a href="{{ route('bc.home') }}">Home</a></li>
-                     {{-- <li class="breadcrumb-item" aria-current="page">Dashboard</li> --}}
-                 </ul>
-             </div>
-         </div>
-     </div>
- </div>
- <!-- [ breadcrumb ] end -->
+@section('content')
+<!-- [ breadcrumb ] start -->
 
- <!-- [ Main Content ] start -->
- <div class="row">
-     <div class="col-sm-12">
-         <div class="row">
-             <!-- [ sample-page ] start -->
-             <div class="col-md-6 col-xl-3">
-                 <div class="card">
-                     <div class="card-body">
-                         <h6 class="mb-2 f-w-400 text-muted">Total Customer</h6>
-                         <h4 class="mb-3">100 <span class="badge bg-light-primary border border-primary"><i
-                                     class="ti ti-trending-up"></i> 0,05%</span></h4>
-                         <p class="mb-0 text-muted text-sm">Perkembangan<span class="text-primary"> 5 </span> hari ini
-                         </p>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-md-6 col-xl-3">
-                 <div class="card">
-                     <div class="card-body">
-                         <h6 class="mb-2 f-w-400 text-muted">Total Penjualan</h6>
-                         <h4 class="mb-3">78,250 <span class="badge bg-light-success border border-success"><i
-                                     class="ti ti-trending-up"></i> 70.5%</span></h4>
-                         <p class="mb-0 text-muted text-sm">Perkembangan <span class="text-success">8,900</span> hari
-                             ini</p>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-md-6 col-xl-3">
-                 <div class="card">
-                     <div class="card-body">
-                         <h6 class="mb-2 f-w-400 text-muted">Total Order</h6>
-                         <h4 class="mb-3">18,000 <span class="badge bg-light-warning border border-warning"><i
-                                     class="ti ti-trending-up"></i> 27.4%</span></h4>
-                         <p class="mb-0 text-muted text-sm"> Perkembangan <span class="text-warning">1,943</span> hari
-                             ini</p>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-md-6 col-xl-3">
-                 <div class="card">
-                     <div class="card-body">
-                         <h6 class="mb-2 f-w-400 text-muted">Total AR</h6>
-                         <h4 class="mb-3">35,078 <span class="badge bg-light-danger border border-danger"><i
-                                     class="ti ti-trending-up"></i> 27.4%</span></h4>
-                         <p class="mb-0 text-muted text-sm">Perkembangan <span class="text-danger">20,395</span> hari
-                             ini
-                         </p>
-                     </div>
-                 </div>
-             </div>
+<style>
+    .news-list .news-item {
+    transition: box-shadow 0.2s;
+}
+.news-list .news-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.sidebar-search-input {
+    background-color: #e6f9ec; /* hijau muda */
+    border-color: #28a745;
+    color: #155724;
+}
+.sidebar-search-input:focus {
+    border-color: #218838;
+    box-shadow: 0 0 0 0.2rem rgba(40,167,69,.25);
+}
+.sidebar-search-btn {
+    border-color: #28a745;
+    background-color: #28a745;
+    color: #fff;
+}
+.sidebar-search-btn:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: #fff;
+}
+.sidebar-link.active,
+.sidebar-link.active a {
+    background-color: #28a745 !important; /* hijau */
+    color: #fff !important;
+    border-color: #218838 !important;
+}
+.sidebar-link.active a i {
+    color: #fff !important;
+}
+</style>
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="card" style="margin: 1.1%">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                    <form method="GET" action="{{ route('bc.home') }} " class="p-4">
+                        <select name="plant" class="form-control" onchange="this.form.submit()">
+                            <option value="">Select Plant</option>
+                            <option value="PKB" {{ request('plant') == 'pkb' ? 'selected' : '' }}>Pekanbaru</option>
+                            <option value="PLB" {{ request('plant') == 'plb' ? 'selected' : '' }}>Palembang</option>
+                            <option value="tje" {{ request('plant') == 'tje' ? 'selected' : '' }}>Tanjung Enim</option>
+                        </select>
+                    </form>
+                    </div>
+                    
+                    <canvas id="customerChart" style="height: 400px;" class="p-4"></canvas>
+                        <div class="card-header">
+                            <h5>Aging AR Report</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Sales Organization</th>
+                                            @foreach($agingCategories as $aging)
+                                                <th>{{ $aging }}</th>
+                                            @endforeach
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($matrix as $org => $agingValues)
+                                            <tr>
+                                                <td>{{ $org }}</td>
+                                                @foreach($agingCategories as $aging)
+                                                    <td>{{ number_format($agingValues[$aging] ?? 0, 2) }}</td>
+                                                @endforeach
+                                                <td><b>{{ number_format($agingValues['total'] ?? 0, 2) }}</b></td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Grand Total</th>
+                                            @foreach($agingCategories as $aging)
+                                                <th>{{ number_format($grandTotals[$aging] ?? 0, 2) }}</th>
+                                            @endforeach
+                                            <th><b>{{ number_format($grandTotals['total'] ?? 0, 2) }}</b></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Home</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('bc.home') }}">Home</a></li>
+                    {{-- <li class="breadcrumb-item" aria-current="page">Dashboard</li> --}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ breadcrumb ] end -->
 
-             <div class=" text-right">
-                 <a href="{{ route('bc.persetujuan3') }}" class="btn btn-green mr-1 btn-a" style="float: left;">Tambah
-                     Nota Kredit</a>
-             </div>
+<!-- [ Main Content ] start -->
+<div class="row">
+    <!-- Sidebar Start -->
+    
+    <div class="col-md-3">
+        <div class="card " style="border-radius: 5px;">
+            <div class="card-body p-0">
+                <div class="sidebar-title p-3 border-bottom">
+                    <h5 class="mb-0" style="font-weight: 600;">Nama Customer</h5>
+                </div>
+                <!-- Search Bar Start -->
+                <div class="p-3 border-bottom">
+                    <form action="#" method="GET">
+                        <div class="input-group">
+                           
+                            <input type="text" class="form-control sidebar-search-input" placeholder="Cari menu..." name="search_menu">
+                            <button class="btn sidebar-search-btn" type="submit">
+                                <i class="ti ti-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Search Bar End -->
+                <ul class="list-group list-group-flush">
+                    @foreach($customers as $customer)
+                        <li class="list-group-item sidebar-link {{ isset($selectedCustomer) && $selectedCustomer->id == $customer->id ? 'active' : '' }} m-2" style="border-radius: 5px;">
+                            <a href="{{ route('bc.home', ['id' => $customer->id]) }}" class="d-flex align-items-center text-decoration-none text-dark ">
+                                <i class="ti ti-user me-2"></i> {{ $customer->nama }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Sidebar End -->
 
-             <div class="card" style="margin: 1.1%">
-                 <div class="card-header">
-                     <h5>Aging AR Report</h5>
-                 </div>
-                 <div class="card-body">
-                     <!-- Table Section -->
-                     <div class="table-responsive mb-4">
-                         <table class="table table-bordered table-striped" id="arTable">
-                             <thead class="bg-light">
-                                 <tr>
-                                     <th class="sortable" onclick="sortTable(0)">Sales Organization <i
-                                             class="ti ti-arrows-sort"></i></th>
-                                     <th class="sortable" onclick="sortTable(1)">Current <i
-                                             class="ti ti-arrows-sort"></i></th>
-                                     <th class="sortable" onclick="sortTable(2)">1-30 Days <i
-                                             class="ti ti-arrows-sort"></i></th>
-                                     <th class="sortable" onclick="sortTable(3)">31-60 Days <i
-                                             class="ti ti-arrows-sort"></i></th>
-                                     <th class="sortable" onclick="sortTable(4)">61-90 Days <i
-                                             class="ti ti-arrows-sort"></i></th>
-                                     <th class="sortable" onclick="sortTable(5)">91-120 Days <i
-                                             class="ti ti-arrows-sort"></i></th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                 <tr>
-                                     <td>PT Maju Bersama</td>
-                                     <td>11,250,000,000</td>
-                                     <td>785,880,000</td>
-                                     <td>425,650,000</td>
-                                     <td>125,000,000</td>
-                                     <td>50,000,000</td>
-                                 </tr>
-                                 <tr>
-                                     <td>PT Sukses Mandiri</td>
-                                     <td>9,875,000,000</td>
-                                     <td>655,430,000</td>
-                                     <td>385,750,000</td>
-                                     <td>98,500,000</td>
-                                     <td>45,000,000</td>
-                                 </tr>
-                                 <tr>
-                                     <td>PT Karya Utama</td>
-                                     <td>8,450,000,000</td>
-                                     <td>545,670,000</td>
-                                     <td>298,450,000</td>
-                                     <td>87,600,000</td>
-                                     <td>35,000,000</td>
-                                 </tr>
-                                 <tr>
-                                     <td>PT Jaya Abadi</td>
-                                     <td>7,980,000,000</td>
-                                     <td>498,750,000</td>
-                                     <td>265,800,000</td>
-                                     <td>76,400,000</td>
-                                     <td>28,000,000</td>
-                                 </tr>
-                             </tbody>
-                         </table>
-                     </div>
+    <!-- Main Content Start -->
+    <div class="col-md-9">
+        <div class="row">
+            <!-- [ sample-page ] start -->
+            <div class="col-md-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="mb-2 f-w-400 text-muted">Total Customer</h6>
+                        <h4 class="mb-3">{{ $totalCustomer ?? 0 }}</h4>
+                        <p class="mb-0 text-muted text-sm">Customer Aktif</p>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="col-md-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="mb-2 f-w-400 text-muted">Total Penjualan</h6>
+                        <h4 class="mb-3">78,250 <span class="badge bg-light-success border border-success"><i
+                                    class="ti ti-trending-up"></i> 70.5%</span></h4>
+                        <p class="mb-0 text-muted text-sm">Perkembangan <span class="text-success">8,900</span> hari ini
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="mb-2 f-w-400 text-muted">Total Order</h6>
+                        <h4 class="mb-3">18,000 <span class="badge bg-light-warning border border-warning"><i
+                                    class="ti ti-trending-up"></i> 27.4%</span></h4>
+                        <p class="mb-0 text-muted text-sm"> Perkembangan <span class="text-warning">1,943</span> hari
+                            ini</p>
+                    </div>
+                </div>
+            </div> --}}
 
-                     <!-- Chart Section -->
-                     <div class="row mb-3">
-                         <div class="col-md-3">
-                             <select id="companyFilter" class="form-select" multiple>
-                                 <option value="all" selected>Semua PT</option>
-                                 <option value="PT Maju Bersama">PT Maju Bersama</option>
-                                 <option value="PT Sukses Mandiri">PT Sukses Mandiri</option>
-                                 <option value="PT Karya Utama">PT Karya Utama</option>
-                                 <option value="PT Jaya Abadi">PT Jaya Abadi</option>
-                             </select>
-                         </div>
-                     </div>
-                     <div>
-                         <canvas id="agingARChart"></canvas>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <!-- [ Main Content ] end -->
+{{-- chart --}}
 
-     <!-- Add Chart.js -->
-     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-     <script>
-     document.addEventListener('DOMContentLoaded', function() {
-         const ctx = document.getElementById('agingARChart').getContext('2d');
-         let myChart;
+            <div class="col-md-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="mb-2 f-w-400 text-muted">Total AR</h6>
+                        <h4 class="mb-3">{{ number_format($totalAR ?? 0, 2) }}</h4>
+                        <p class="mb-0 text-muted text-sm">Outstanding AR</p>
+                    </div>
+                </div>
+            </div>
 
-         const chartData = {
-             'PT Maju Bersama': {
-                 data: [11250000000, 785880000, 425650000, 125000000, 50000000],
-                 backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                 borderColor: 'rgba(75, 192, 192, 1)'
-             },
-             'PT Sukses Mandiri': {
-                 data: [9875000000, 655430000, 385750000, 98500000, 45000000],
-                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                 borderColor: 'rgba(255, 99, 132, 1)'
-             },
-             'PT Karya Utama': {
-                 data: [8450000000, 545670000, 298450000, 87600000, 35000000],
-                 backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                 borderColor: 'rgba(54, 162, 235, 1)'
-             },
-             'PT Jaya Abadi': {
-                 data: [7980000000, 498750000, 265800000, 76400000, 28000000],
-                 backgroundColor: 'rgba(255, 206, 86, 0.5)',
-                 borderColor: 'rgba(255, 206, 86, 1)'
-             }
-         };
+            
 
-         function createChart(selectedCompanies) {
-             if (myChart) {
-                 myChart.destroy();
-             }
+            <div class=" text-right">
+                <a href="{{ route('admin.formTingkat3') }}" class="btn btn-green mr-1 btn-a" style="float: left;">Tambah
+                    Nota Kredit</a>
+            </div>
+{{-- chart --}}
+</div>
+   
 
-             const datasets = [];
-             if (selectedCompanies.includes('all')) {
-                 Object.entries(chartData).forEach(([company, data]) => {
-                     datasets.push({
-                         label: company,
-                         data: data.data,
-                         backgroundColor: data.backgroundColor,
-                         borderColor: data.borderColor,
-                         borderWidth: 1
-                     });
-                 });
-             } else {
-                 selectedCompanies.forEach(company => {
-                     if (chartData[company]) {
-                         datasets.push({
-                             label: company,
-                             data: chartData[company].data,
-                             backgroundColor: chartData[company].backgroundColor,
-                             borderColor: chartData[company].borderColor,
-                             borderWidth: 1
-                         });
-                     }
-                 });
-             }
+ 
+    </div>
+    <!-- Main Content End -->
+</div>
 
-             const config = {
-                 type: 'bar',
-                 data: {
-                     labels: ['Current', '1-30 Days', '31-60 Days', '61-90 Days', '91-120 Days'],
-                     datasets: datasets
-                 },
-                 options: {
-                     responsive: true,
-                     scales: {
-                         y: {
-                             beginAtZero: true,
-                             ticks: {
-                                 callback: function(value) {
-                                     return new Intl.NumberFormat('id-ID', {
-                                         style: 'currency',
-                                         currency: 'IDR',
-                                         minimumFractionDigits: 0,
-                                         maximumFractionDigits: 0
-                                     }).format(value);
-                                 }
-                             }
-                         }
-                     },
-                     plugins: {
-                         title: {
-                             display: true,
-                             text: 'Aging AR per Company'
-                         },
-                         legend: {
-                             position: 'top'
-                         }
-                     }
-                 }
-             };
+<!-- Add Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-             myChart = new Chart(ctx, config);
-         }
+<script>
+    const ctx = document.getElementById('customerChart').getContext('2d');
+    const customerNames = @json($customerNames);
+    const customerARs = @json($customerARs);
 
-         // Create initial chart
-         createChart(['all']);
+    const customerChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: customerNames,
+            datasets: [{
+                label: 'Outstanding AR',
+                data: customerARs,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Outstanding AR'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Customer'
+                    }
+                }
+            }
+        }
+    });
+</script>
 
-         // Handle company filter change
-         document.getElementById('companyFilter').addEventListener('change', function(e) {
-             const selectedCompanies = Array.from(this.selectedOptions).map(option => option.value);
-             createChart(selectedCompanies);
-         });
-     });
-     </script>
-
-     <script>
-     function sortTable(n) {
-         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-         @endsection
+@endsection

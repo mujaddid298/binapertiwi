@@ -1,4 +1,4 @@
-@extends('layouts.bc.app_admin')
+@extends('layouts.admin.app_admin')
 
 @section('title', 'Daftar User')
 
@@ -12,7 +12,7 @@
                     <h5 class="m-b-10">Daftar Pengguna</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('bc.daftaruser') }}">Daftar Pengguna</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.daftaruser') }}">Daftar Pengguna</a></li>
                     {{-- <li class="breadcrumb-item" aria-current="page">Dashboard</li> --}}
                 </ul>
             </div>
@@ -25,6 +25,7 @@
 <div class="col-md-12 col-xl-12">
     <div class="card tbl-card">
         <div class="card-body">
+            <a href="{{ route('admin.daftaruser.tambah') }}" class="btn btn-green mb-3">Tambah Pengguna</a>
             <div class="table-responsive">
                 <table class="table table-hover table-borderless mb-0">
                     <thead>
@@ -36,6 +37,7 @@
                             <th>JABATAN</th>
                             <th>NO HP</th>
                             <th>CABANG</th>
+                            <th>AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,6 +50,9 @@
                             <td>{{ $user->jabatan }}</td>
                             <td>{{ $user->no_hp }}</td>
                             <td>{{ $user->cabang }}</td>
+                            <td>
+                                <a href="{{ route('admin.daftaruser.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

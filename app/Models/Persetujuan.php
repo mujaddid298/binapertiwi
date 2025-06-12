@@ -11,14 +11,14 @@ class Persetujuan extends Model
 
     protected $table = 'persetujuan_nak';
     protected $fillable = [
-        'nak_id',
-        'komite_id',
+        'open_block_id',
+        'user_id',
         'status',
-        'komen',
-        'tanggal_persetujuan',
+        'komentar',
+        'level',
     ];
     // Relasi ke tabel user (komite)
-    public function komite()
+    public function user()
     {
         return $this->belongsTo(User::class, 'komite_id');
     }

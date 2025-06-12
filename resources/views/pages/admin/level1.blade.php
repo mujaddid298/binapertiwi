@@ -23,4 +23,4 @@ function continueToNextForm() {
     window.location.href = '/admin/form-berikutnya'; // Ganti dengan URL form berikutnya
 }
 </script>
-@endsection 
+@endsection

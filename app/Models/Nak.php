@@ -27,7 +27,8 @@ class Nak extends Model
         'nilai_kredit', 
         'term_of_payment', 
         'bunga', 
-        'jaminan'
+        'jaminan',
+        'level'
     ];
 
     public function user()
@@ -38,5 +39,10 @@ class Nak extends Model
     public function persetujuan()
     {
         return $this->hasMany(Persetujuan::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

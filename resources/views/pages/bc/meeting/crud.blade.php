@@ -1,4 +1,4 @@
-@extends('layouts.bc.app_admin')
+@extends('layouts.bc.app')
 
 @section('title', 'Pemberitahuan Meeting')
 

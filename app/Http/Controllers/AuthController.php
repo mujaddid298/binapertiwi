@@ -40,7 +40,7 @@ class AuthController extends Controller
                 return redirect()->intended('bc/home');
             } elseif ($user->role === 'komite') {
                 // Jika viewer, redirect ke halaman viewer
-                return redirect()->intended('/home');
+                return redirect()->intended('komite/home');
             } else {
                 Log::warning('Peran pengguna tidak dikenali', ['role' => $user->role]);
             }

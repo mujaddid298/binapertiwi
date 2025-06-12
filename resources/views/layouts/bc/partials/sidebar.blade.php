@@ -19,7 +19,7 @@
                 <li class="pc-item">
                     <a href="{{ route('bc.home') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
-                        <span class="pc-mtext">Dashboard</span>
+                    <span class="pc-mtext">Dashboard</span>
                     </a>
                 </li>
                 {{-- <li class="pc-item pc-caption">
@@ -90,7 +90,7 @@
           </ul>
         </li> --}}
                 <li class="pc-item">
-                    <a href="{{ url('/other/sample-page') }}" class="pc-link">
+                    <a href="{{ route('logout') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-logout"></i></span>
                         <span class="pc-mtext">Logout</span>
                     </a>

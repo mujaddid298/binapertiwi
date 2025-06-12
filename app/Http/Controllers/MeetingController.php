@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Meeting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Notifications\MeetingScheduled;
 
 class MeetingController extends Controller
 {
@@ -17,7 +19,6 @@ class MeetingController extends Controller
     public function create()
     {
         return view('pages.admin.meeting.crud');
-        
     }
 
     public function store(Request $request)
@@ -89,7 +90,6 @@ class MeetingController extends Controller
     public function createbc()
     {
         return view('pages.bc.meeting.crud');
-        
     }
 
     public function storebc(Request $request)
@@ -101,12 +101,18 @@ class MeetingController extends Controller
             'link' => 'required|string|max:255',
         ]);
 
-        Meeting::create([
+        $meeting = Meeting::create([
             'judul' => $request->judul,
             'tanggal' => $request->tanggal . ' ' . $request->jam,
             'link' => $request->link,
             'status' => 'scheduled',
         ]);
+
+        // Send notification to the committee
+        $committeeMembers = User::where('role', 'committee')->get(); // Adjust this query as needed
+        foreach ($committeeMembers as $member) {
+            $member->notify(new MeetingScheduled($meeting));
+        }
 
         return redirect()->route('bc.meeting.index')->with('success', 'Meeting berhasil ditambahkan');
     }
@@ -139,7 +145,7 @@ class MeetingController extends Controller
             'link' => $request->link,
         ]);
 
-            return redirect()->route('bc.meeting.index')->with('success', 'Meeting berhasil diperbarui');
+        return redirect()->route('bc.meeting.index')->with('success', 'Meeting berhasil diperbarui');
     }
 
     public function destroybc($id)
@@ -148,5 +154,16 @@ class MeetingController extends Controller
         $meeting->delete();
 
         return redirect()->route('bc.meeting.index')->with('success', 'Meeting berhasil dihapus');
+    }
+    public function showKomite($id)
+    {
+        $meeting = Meeting::findOrFail($id);
+        return view('pages.komite.meeting', compact('meeting'));
+    }
+
+    public function indexKomite()
+    {
+        $meetings = Meeting::all(); // Fetch all meetings
+        return view('pages.komite.meeting.index', compact('meetings'));
     }
 }
