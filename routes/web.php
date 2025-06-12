@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NotaController;
 use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\BcController;
 use App\Http\Middleware\CheckRole;
 
 // Public routes
